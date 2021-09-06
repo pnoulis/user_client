@@ -1,5 +1,7 @@
+import {StandardLayout, NoLayout} from "components/App";
+
 export default function INDEX_PAGE() {
   return (
-    <p>hi</p>
+    <StandardLayout><p>hello thats the index page</p></StandardLayout>
   );
 }

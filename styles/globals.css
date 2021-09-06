@@ -1,16 +1,89 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+                 Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+
+    background-color: rgba(160, 169, 200, 0.05);
+
+
+    /*
+          FONTS-SIZES
+   */
+    --font-size-3small: 0.4em;
+    --font-size-2small: 0.6em;
+    --font-size-small: 0.8em;
+    --font-size-regular: 1em;
+    --font-size-large: 1.2em;
+    --font-size-2large: 1.4em;
+    --font-size-3large: 1.6em;
+    --font-size-4large: 1.8em;
+    --font-root-small: 0.9rem;
+    --font-root-regular: 1rem;
+    --font-root-large: 1.1rem;
+
+    /*
+          COLOR-PALETTE
+     */
+
+    --color-primary: rgba(255, 253, 1, 1);
+    --color-secondary: rgba(13, 94, 175, 1);
+    --color-semantic: rgba(30, 144, 255, 1);
+    --color-blue-dodge-light: rgba(0, 173, 238, 1);
+    --color-grey-phosSilver: rgba(160, 169, 200, 1);
+    --color-grey-phosSilver-8: rgba(160, 169, 200, .8);
+    --color-grey-phosSilver-6: rgba(160, 169, 200, .6);
+    --color-grey-phosSilver-4: rgba(160, 169, 200, 0.4);
+    --color-grey-phosSilver-2: rgba(160, 169, 200, 0.2);
+    --color-error: rgba(255, 115, 115, 1);
+    --color-success: rgba(0, 250, 154, 1);
+    --color-font: rgba(61, 61, 90, 1);
 }
 
+
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#__next {
+    flex: 1;
+    display: flex;
+    background-color: inherit;
+}
+
+.visually-hide-element {
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    border: 0;
+}
+
+
+@media (min-width: 1400px) {
+    --font-root-small: 1rem;
+    --font-root-regular: 1.1rem;
+    --font-root-large: 1.2rem;
+}
+
+@media (min-width: 2000px) {
+    --font-root-small: 1.1rem;
+    --font-root-regular: 1.2rem;
+    --font-root-large: 1.3rem;
 }
