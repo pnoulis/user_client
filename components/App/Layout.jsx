@@ -21,6 +21,7 @@ background-color: inherit;
 display: ${props => props.center && "flex"};
 justify-content: ${props => props.center && "center"};
 align-items: ${props => props.center && "center"};
+padding: 2px;
 `,
 FooterWrapper = styled.footer`
 grid-column: 1/2;

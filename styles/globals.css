@@ -43,6 +43,7 @@ body {
     --color-error: rgba(255, 115, 115, 1);
     --color-success: rgba(0, 250, 154, 1);
     --color-font: rgba(61, 61, 90, 1);
+    --color-darkNavy-b70-1: rgba(61, 61, 70, 1);
 }
 
 
@@ -60,6 +61,7 @@ a {
 #__next {
     flex: 1;
     display: flex;
+    flex-flow: column nowrap;
     background-color: inherit;
 }
 

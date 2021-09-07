@@ -1,0 +1,41 @@
+.forgotRegister {
+    .anchor {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    p:nth-child(1) {
+        font-size: 1rem;
+        font-weight: bold;
+        color: var(--color-blue-dodge-light);
+        margin-top: 5px;
+        margin-bottom: 4px;
+        text-align: right;
+        cursor: pointer;
+
+        @media screen and (min-width: 1000px) {
+            font-size: 1.2rem;
+        }
+
+        &:hover {
+            color: var(--color-font);
+        }
+    }
+
+    p:nth-child(2) {
+        font-size: 1rem;
+        margin: 0;
+        font-weight: bold;
+        color: var(--color-blue-dodge-light);
+        text-align: right;
+        cursor: pointer;
+
+        @media screen and (min-width: 1000px) {
+            font-size: 1.2rem;
+        }
+        &:hover {
+            color: var(--color-font);
+        }
+
+    }
+}

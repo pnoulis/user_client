@@ -111,7 +111,7 @@ RegisterSuccess = ({flashId}) => {
     </article>
   );
 },
-LoginSuccess = ({flashId, username}) => {
+LoginSuccess = ({flashId}) => {
   const config = {timeAlive: 7000}; // 7 seconds
   useTimeout(flashId, config.timeAlive);
 
@@ -124,7 +124,7 @@ LoginSuccess = ({flashId, username}) => {
         />
       </div>
       <p className={style.message}>
-        Welcome, &ensp; {username || "user"}&ensp;!
+        Welcome, &ensp; user &ensp;!
       </p>
     </article>
   );

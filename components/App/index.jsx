@@ -8,7 +8,7 @@ export function App({children}) {
   return (
     <APP_STORE.appContext.Provider value={{...app, setApp}}>
       {children}
-      {ListFlashMessages}
+      <ListFlashMessages/>
     </APP_STORE.appContext.Provider>
   );
 }
