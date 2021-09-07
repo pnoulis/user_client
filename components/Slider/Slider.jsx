@@ -21,7 +21,7 @@ function Slider({type, children}) {
   }, [dimensions]);
 
   return (
-      <S.Aside ref={container} height={dimensions.container}>
+    <S.Aside ref={container} height={dimensions.container}>
         <S.Nav ref={slider} minHeight={dimensions.slider}>
           {
             children.map((c, i) => (

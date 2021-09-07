@@ -27,7 +27,8 @@ grid-template-columns: repeat(3, minmax(280px, 350px));
 `,
 Sidebar = styled.aside`
 position: absolute;
-width: 100px;
-height: 100px;
+height: 100%;
+max-height: 100vh;
+display: flex;
 background-color: pink;
 `;
