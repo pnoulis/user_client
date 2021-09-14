@@ -1,0 +1,103 @@
+.login {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+
+    a:not(:last-child) {
+        margin-right: 15px;
+    }
+    a {
+        display: inline-block;
+        width: 100px;
+        padding: 10px 0;
+        text-align: center;
+        background-color: var(--color-honey);
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        letter-spacing: 1px;
+        text-transform: capitalize;
+
+        &:hover {
+            background-color: var(--color-primary);
+            color: var(--color-font);
+        }
+        // &:active {
+        //     color: colors.$blue-darkNavy-b90-1;
+        //     background-color: colors.$green-phos-1;
+        // }
+    }
+
+    @media (min-width: 1400px) {
+        a {
+            width: 130px;
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (min-width: 1800px) {
+        a {
+            font-size: 1.3rem;
+        }
+    }
+}
+
+.loggedIn {
+    position: relative;
+    .user {
+        border: none;
+        outline: none;
+        display: flex;
+        flex-flow: row nowrap;
+        padding: 8px 15px 8px 20px;
+        background-color: var(--color-honey);
+        justify-content: center;
+        border-radius: 5px;
+        align-items: center;
+        cursor: pointer;
+        color: black;
+        position: relative;
+        z-index: 100;
+        min-width: 156px;
+
+        &:hover ~ ul {
+            display: block !important;
+        }
+
+
+        &:hover {
+            background-color: var(--color-primary);
+            color: var(--color-font);
+        }
+
+        span {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+
+        }
+        img {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+        }
+
+
+        @media (min-width: 1400px) {
+            span {
+                font-size: 1.2rem;
+            }
+            img {width: 35px; height: 35px;}
+        }
+    }
+}
+
+.show {
+    background-color: var(--color-primary) !important;
+    color: var(--color-font) !important;
+}

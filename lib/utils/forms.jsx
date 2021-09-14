@@ -22,8 +22,8 @@ confirmPassword = (confirm, password) => {
 },
 usePassword = (type, style) => {
   const
-  images = ["/close_fill_minimal.svg",
-            "/open_fill_black_minimal.svg"],
+  images = ["/eye_close.svg",
+            "/eye_open.svg"],
   [reveal, setReveal] = useState(false);
 
   if (type !== "password") return {reveal: false, password: null};

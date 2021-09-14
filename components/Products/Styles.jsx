@@ -6,9 +6,9 @@ const
 Root = styled.article`
 position: relative;
 display: grid;
-grid-template-columns: minmax(280px, 350px);
-grid-template-rows: auto;
-background-color: green;
+grid-template-columns: minmax(280px, 380px);
+grid-auto-rows: max-content;
+// grid-template-rows: minmax(auto, 550px);
 min-width: 100%;
 min-height: 100%;
 gap: 50px 50px; // row column
@@ -17,11 +17,11 @@ font-size: var(--font-root-regular);
 justify-content: center;
 
 @media (min-width: 700px) {
-grid-template-columns: repeat(2, minmax(280px, 350px));
+grid-template-columns: repeat(2, minmax(280px, 380px));
 }
 
-@media (min-width: 1100px) {
-grid-template-columns: repeat(3, minmax(280px, 350px));
+@media (min-width: 1200px) {
+grid-template-columns: repeat(3, minmax(280px, 380px));
 }
 
 `,

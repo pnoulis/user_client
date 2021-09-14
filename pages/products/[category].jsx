@@ -5,7 +5,7 @@ import Products from "components/Products";
 export default function PRODUCTS_PAGE({products}) {
   return (
     <StandardLayout>
-      <Products/>
+      <Products products={products}/>
     </StandardLayout>
   );
 }
