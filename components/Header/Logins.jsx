@@ -16,7 +16,7 @@ const styleReducer = (params) => {
   return config;
 };
 
-export function LoggedIn({user, userNav}) {
+export function LoggedIn({userNav}) {
   const
   [mobileTouched, setMobileTouched] = useState(false),
   {hovered, bindHover} = useHover(),
@@ -27,7 +27,7 @@ export function LoggedIn({user, userNav}) {
       <p
         onTouchStart={() => setMobileTouched(!mobileTouched)}
         className={setStyle(["show"], "user")}>
-        <span>{user || "pavlos"}</span>
+        <span>account</span>
         <img src="/user-success.png" alt="user-icon"/>
       </p>
       <DropDown

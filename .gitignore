@@ -3,6 +3,7 @@
 package-lock.json
 /public
 .#*
+/config
 # dependencies
 /node_modules
 /.pnp

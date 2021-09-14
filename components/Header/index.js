@@ -8,6 +8,7 @@ import Socials from "./Socials";
 import {Login, LoggedIn} from "./Logins";
 import ShopCart from "./ShopCart";
 import style from "./styles/header.module.scss";
+import {APP_STORE} from "lib/stores";
 
 const nav = {
   primary: [
@@ -32,6 +33,7 @@ const nav = {
 };
 
 export default function Header() {
+  const {shoppingCart, user} = APP_STORE.useAppContext();
   const shopCartAmount = 0;
 
   return (
@@ -52,8 +54,7 @@ export default function Header() {
         <PrimaryNav primNav={nav.primary}/>
       </section>
       <section className={style.loginsSec}>
-        <Login/>
-        {/* <LoggedIn userNav={nav.user}/> */}
+        {user.loggedIn ? <LoggedIn userNav={nav.user}/> : <Login/>}
       </section>
     </header>
   );
