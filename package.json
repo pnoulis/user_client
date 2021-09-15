@@ -15,12 +15,12 @@
     "decode": "^0.3.0",
     "html-entities": "^2.3.2",
     "next": "11.1.2",
+    "object-hash": "^2.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-loading": "^2.0.3",
     "sass": "^1.39.0",
     "styled-components": "^5.3.1",
-    "use-persisted-state": "^0.3.3",
     "validator": "^13.6.0"
   },
   "devDependencies": {

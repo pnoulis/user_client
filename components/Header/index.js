@@ -33,7 +33,7 @@ const nav = {
 };
 
 export default function Header() {
-  const {shoppingCart, user} = APP_STORE.useAppContext();
+  const {app} = APP_STORE.useAppContext();
   const shopCartAmount = 0;
 
   return (
@@ -54,7 +54,7 @@ export default function Header() {
         <PrimaryNav primNav={nav.primary}/>
       </section>
       <section className={style.loginsSec}>
-        {user.loggedIn ? <LoggedIn userNav={nav.user}/> : <Login/>}
+        {app.loggedIn ? <LoggedIn userNav={nav.user}/> : <Login/>}
       </section>
     </header>
   );

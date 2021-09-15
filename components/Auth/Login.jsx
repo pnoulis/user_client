@@ -13,7 +13,7 @@ FORM_SCHEMA = {fieldErrors: {}, fields: FIELD_SCHEMA, edit: true};
 
 function Login() {
   const
-  {user, setApp} = APP_STORE.useAppContext(),
+  {setApp} = APP_STORE.useAppContext(),
   {form, setForm} = FORM_STORE.useForm(FORM_SCHEMA),
   {setReq, status, res} = useBackend();
 
@@ -31,14 +31,14 @@ function Login() {
     if (payload.fieldErrors) setForm("setErrors", payload.fieldErrors);
     if (!res.ok && payload.flashMessage) return setApp("addFlash", {flashId: payload.flashMessage});
 
+
     if (res.ok) {
-      setApp("login", payload);
+      setApp("setSession", payload);
       setTimeout(() => setApp("addFlash", {flashId: "FLoginSuccess"}), 3000);
 
       if (location.pathname === "/checkout/login") {
         return setTimeout(() => Router.push("/checkout/delivery"), 1000);
       }
-
       setTimeout(() => Router.push("/"), 1000);
     }
   }, [res]);
