@@ -13,12 +13,30 @@ export const FLASHES = {
   FLoginPassword: (index, flashMessage) => <WrongPassword key={index} {...flashMessage}/>,
   FRegisterSuccess: (index, flashMessage) => <RegisterSuccess key={index} {...flashMessage}/>,
   FLoginSuccess: (index, flashMessage) => <LoginSuccess key={index} {...flashMessage}/>,
+  FOutOfStock: (index,) => <OutOfStock key={index} flashId="FOutOfStock" />,
 };
 
 const
 useTimeout = (flashId, timeAlive) => {
   const {setApp} = useAppContext();
   setTimeout(() => setApp("removeFlash", flashId), timeAlive);
+},
+OutOfStock = ({flashId}) => {
+  const config = {timeAlive: 7000}; // 7 seconds
+  useTimeout(flashId, config.timeAlive);
+  return (
+    <article id={flashId} className={style.flashContainer}>
+      <div className={style.imgContainer}>
+        <img
+          src="/beingUsed/user.png"
+          alt="small-user-icon"
+        />
+      </div>
+      <p className={style.message}>
+        Product is out of stock!
+      </p>
+    </article>
+  );
 },
 AccountDuplicate = ({flashId}) => {
   const config = {timeAlive: 7000}; // 7 seconds

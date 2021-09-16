@@ -28,7 +28,7 @@ export function LoggedIn({userNav}) {
         onTouchStart={() => setMobileTouched(!mobileTouched)}
         className={setStyle(["show"], "user")}>
         <span>account</span>
-        <img src="/user-success.png" alt="user-icon"/>
+        <img src="/user_success.png" alt="user-icon"/>
       </p>
       <DropDown
         show={mobileTouched}

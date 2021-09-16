@@ -34,7 +34,6 @@ const nav = {
 
 export default function Header() {
   const {app} = APP_STORE.useAppContext();
-  const shopCartAmount = 0;
 
   return (
     <header className={style.header}>
@@ -42,7 +41,7 @@ export default function Header() {
         <Logo logo={nav.logo}/>
       </section>
       <section className={style.shopSec}>
-        <ShopCart amount={shopCartAmount}/>
+        <ShopCart amount={app.cart.meta.total || 0}/>
       </section>
       <section className={style.hamSec}>
         <HamMenu/>

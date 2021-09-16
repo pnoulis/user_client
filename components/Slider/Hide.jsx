@@ -47,7 +47,7 @@ width: ${props => props.toggled ? "0px" : "350px"};
 
 export function Hide({children}) {
   const
-  [toggle, setToggle] = useState(false),
+  [toggle, setToggle] = useState(true),
   [dimensions, setDimensions] = useState({}),
   ref = useRef(null),
   resize = useResizeEvent();
