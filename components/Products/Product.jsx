@@ -26,8 +26,6 @@ ImageArea = styled.div`
 // layout - dimensions
 flex: 1;
 display: flex;
-padding: 2px 1px 0 1px;
-
 
 // children
 img {

@@ -54,3 +54,11 @@ tabs.listenForChanges = function(name, dispatcher) {
 
   window.addEventListener("storage", handleStorageEvent);
 };
+
+export function rapidEventQueue(config) {
+  const events = [];
+  return () => {
+    events.push(setTimeout(config.run, config.time));
+    events.length > 1 && clearTimeout(events.shift());
+  };
+}

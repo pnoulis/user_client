@@ -1,5 +1,6 @@
 html,
 body {
+    scrollbar-width: none;
     min-width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -38,6 +39,7 @@ body {
     --color-semantic: rgba(30, 144, 255, 1);
     --color-olive: rgba(128, 128, 0, 1);
     --color-moss: rgba(134, 126, 54, 1);
+    --color-background-grey: #e4e7f1;
     --color-blue-dodge-light: rgba(0, 173, 238, 1);
     --color-grey-phosSilver: rgba(160, 169, 200, 1);
     --color-grey-phosSilver-8: rgba(160, 169, 200, .8);

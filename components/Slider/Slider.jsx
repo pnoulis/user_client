@@ -1,44 +1,106 @@
 import React, {useState, useEffect, useRef} from "react";
-import S from "./Styles";
+import {Dimensions} from "lib/utils";
+import styled from "styled-components";
 
-const SliderCard = S.SliderCard;
-export {Slider, SliderCard};
+/*
+  old colors:
+
+  "rgb(160, 169, 200)",
+  "rgb(61, 108, 185)", // blue
+ */
+const
+LEVEL_COLORS = [
+  "rgb(13, 94, 175)", // greece blue
+  "rgb(255, 165, 0)", // orange
+  "rgb(255, 36, 66)", // red
+  "rgb(255, 228, 89)", // yellow
+  "rgb(93, 130, 51)", // green
+  "rgb(174, 0, 251)", // purple
+  "rgb(255, 103, 231)" // pink
+];
+
+const
+SliderWrapper = styled.aside`
+border: 3px solid var(--color-honey);
+background-color: var(--color-background-grey);
+border-top-right-radius: 8px;
+border-bottom-right-radius: 8px;
+height: 100%;
+width: 100%;
+position: absolute;
+left: -3px;
+overflow-y: scroll;
+scroll-behavior: smooth;
+scrollbar-width: none;
+font-size: var(--font-root-regular);
+`,
+SliderContent = styled.div`
+min-height: ${props => props.height + "px"};
+padding: 15px 8px 15px 5px;
+`,
+SliderCard = styled.div`
+background-color: ${({level}) => LEVEL_COLORS[level]};
+min-height: 50px;
+max-height: 90px;
+width: 95%;
+margin: auto;
+height: ${({level}) => 90 - level * 10 + "px"};
+display: flex;
+justify-content: center;
+margin-bottom: 15px;
+align-items: center;
+border-radius: 8px;
+cursor: pointer;
+
+color: ${({level}) => !level ? "black" : "white"};
+font-size: var(--font-size-large);
+font-weight: bold;
+letter-spacing: 0.5px;
+text-transform: lowercase;
+
+&:hover {
+opacity: 0.7;
+}
+`;
 
 function Slider({type, children}) {
-  const
-  container = useRef(null),
-  slider = useRef(null),
-  [selected, setSelected] = useState({}),
-  [dimensions, setDimensions] = useState({});
+  const [height, setHeight] = useState(0);
+  const [selected, setSelected] = useState({});
+  const slider = useRef(null);
+  const content = useRef(null);
 
   useEffect(() => {
-    if (typeof selected.id !== "number") container.current.scrollTop = 0;
+    if (typeof selected.id !== "number") slider.current.scrollTop = 0;
   }, [selected]);
 
+
   useEffect(() => {
-    if (Object.keys(dimensions).length) return;
-    setDimensions(calculateDimensions(type, children.length, container, slider));
-  }, [dimensions]);
+    let sliderHeight = Dimensions.get(slider.current, "height").offsetHeight;
+    let contentHeight = Dimensions.get(content.current, "height").offsetHeight;
+    contentHeight = sliderHeight + contentHeight - Math.round(contentHeight / children.length);
+    setHeight(contentHeight);
+  }, [slider, content]);
+
 
   return (
-    <S.Aside ref={container} height={dimensions.container}>
-        <S.Nav ref={slider} minHeight={dimensions.slider}>
-          {
-            children.map((c, i) => (
-              i === selected.id ? null :
-                <SliderNode key={i} id={i} setSelected={setSelected}>
-                  {c}
-                </SliderNode>
-            ))
-          }
-          {
-            typeof selected.id === "number" &&
-              <SliderNode key={selected.id} id={selected.id} setSelected={setSelected} selected>
-                {children[selected.id]}
+    <SliderWrapper ref={slider}>
+      <SliderContent ref={content} height={height}>
+        {
+          children.map((c, i) => (
+            i === selected.id ? null :
+              <SliderNode key={i} id={i} setSelected={setSelected}>
+                {c}
               </SliderNode>
-          }
-        </S.Nav>
-      </S.Aside>
+          ))
+        }
+        {
+          typeof selected.id === "number" &&
+            <SliderNode key={selected.id} id={selected.id} setSelected={setSelected} selected>
+              {children[selected.id]}
+            </SliderNode>
+        }
+      </SliderContent>
+    </SliderWrapper>
   );
 }
 
@@ -46,7 +108,9 @@ function SliderNode({id, setSelected, selected, children}) {
   const node = useRef(null);
 
   useEffect(() => {
-    selected && node.current.scrollIntoView();
+    if (selected) {
+      node.current.parentElement.parentElement.scrollTop = Dimensions.get(node.current, "relativeHeight").Ypts - 13;
+    }
   }, [selected]);
 
   return (
@@ -56,52 +120,5 @@ function SliderNode({id, setSelected, selected, children}) {
     </div>
   );
 }
-function calculateDimensions(type, sliderChildren, container, slider) {
-  let containerXY = 0, sliderXY = 0, browserXY = 0, diff = 0;
 
-  containerXY = type === "vertical" ? container.current.offsetHeight :
-    container.current.offsetWidth;
-
-  sliderXY = type === "vertical" ? slider.current.offsetHeight :
-    container.current.offsetWidth;
-
-  browserXY = type === "vertical" ? document.documentElement.clientHeight :
-    document.documentElement.clientWidth;
-
-  diff = containerXY - sliderXY;
-  if (!diff) diff = sliderXY - browserXY;
-  // diff ||= sliderXY - browserXY;
-
-  return {
-    container: browserXY - (browserXY - containerXY),
-    slider: containerXY * 2 - diff - Math.round(sliderXY / sliderChildren),
-    calculated: true,
-  };
-}
-function useSlider(type, sliderChildren, container, slider) {
-  const [dimensions, setDimensions] = useState({});
-
-  if (!container.current || !slider.current || dimensions.calculated) return dimensions;
-  let containerXY = 0, sliderXY = 0, browserXY = 0, diff = 0;
-
-  containerXY = type === "vertical" ? container.current.offsetHeight :
-    container.current.offsetWidth;
-
-  sliderXY = type === "vertical" ? slider.current.offsetHeight :
-    container.current.offsetWidth;
-
-  browserXY = type === "vertical" ? document.documentElement.clientHeight :
-    document.documentElement.clientWidth;
-
-  diff = containerXY - sliderXY;
-  if (!diff) diff = sliderXY - browserXY;
-  // diff ||= sliderXY - browserXY;
-
-  setDimensions({
-    container: browserXY - (browserXY - containerXY),
-    slider: containerXY * 2 - diff - Math.round(sliderXY / sliderChildren),
-    calculated: true,
-  });
-
-  return dimensions;
-}
+export {Slider, SliderCard};
