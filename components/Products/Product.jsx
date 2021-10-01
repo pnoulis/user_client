@@ -26,8 +26,6 @@ ImageArea = styled.div`
 // layout - dimensions
 flex: 1;
 display: flex;
-padding: 2px 1px 0 1px;
-
 
 // children
 img {
@@ -48,7 +46,6 @@ padding: 10px 20px 0 20px;
 
 // style
 gap: 20px 15px;
-// background-color: red;
 
 `,
 BuyArea = styled.p`
@@ -62,6 +59,7 @@ align-items: center;
 font-size: var(--font-size-large);
 font-weight: bold;
 letter-spacing: 1px;
+color: var(--color-font);
 
 // styling
 border-top: 2px solid var(--color-honey);
@@ -86,7 +84,7 @@ font-size: var(--font-size-2large);
 font-weight: bold;
 letter-spacing: 0.5px;
 text-align: right;
-color: var(--color-secondary);
+color: var(--color-font);
 
 `,
 Weight = styled.p`
@@ -94,14 +92,16 @@ Weight = styled.p`
 font-size: var(--font-size-regular);
 letter-spacing: 1px;
 font-weight: bold;
-color: var(--color-secondary);
+color: var(--color-font);
 `,
 Description = styled.p`
 // fonts
 display: inline;
 overflow-wrap: anywhere;
 font-size: var(--font-size-large);
+color: var(--color-font);
 letter-spacing: 0.5px;
+text-transform: lowercase;
 `;
 
 

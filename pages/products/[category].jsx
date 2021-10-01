@@ -2,10 +2,10 @@ import {StandardLayout} from "components/App";
 import backend from "lib/backend";
 import Products from "components/Products";
 
-export default function PRODUCTS_PAGE({products}) {
+export default function PRODUCTS_PAGE({products, pages}) {
   return (
     <StandardLayout>
-      <Products products={products}/>
+      <Products products={products} pages={pages}/>
     </StandardLayout>
   );
 }
@@ -22,5 +22,5 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  return {props: {products: res.payload}};
+  return {props: payload};
 }
