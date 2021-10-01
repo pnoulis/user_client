@@ -48,15 +48,15 @@ export default function Products({products, pages}) {
     {products.map((pr, i) => (
       i < 7 && <Product key={i} id={i} product={pr} requestStock={requestStock} />
     ))}
-    <Dock sticky>
-      <Size parentId="container">
-        <Hide>
-          <Slider>
-            <SliderCard level={0}>hello</SliderCard>
-            <SliderCard level={0}>bro</SliderCard>
-          </Slider>
-        </Hide>
-      </Size>
-    </Dock>
+    {/* <Dock sticky> */}
+    {/*   <Size parentId="container"> */}
+    {/*     <Hide> */}
+    {/*       <Slider> */}
+    {/*         <SliderCard level={0}>hello</SliderCard> */}
+    {/*         <SliderCard level={0}>bro</SliderCard> */}
+    {/*       </Slider> */}
+    {/*     </Hide> */}
+    {/*   </Size> */}
+    {/* </Dock> */}
   </Styles.Root>;
 }

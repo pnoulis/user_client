@@ -1,89 +1,60 @@
-import {useState, useEffect, useRef, useCallback} from "react";
+import {useState, useEffect, useRef} from "react";
 import {Dimensions} from "lib/utils";
 import styled from "styled-components";
+
 const
-position = (position, middle) => {
-  if (typeof position === "undefined" && !middle) return "initial";
-  return typeof position !== "undefined" ? position === "boolean" ? 0 : position + "px" : "50%";
+formatProps = (position, middle) => {
+  if (typeof position === "undefined" && middle) return "50%";
+  if (typeof position === "undefined" || position === "initial") return "initial";
+  if (typeof position === "boolean") return 0 + "px";
+  return position + "px";
 },
-Docker = styled.div`
-position: ${props => props.position};
-left: ${props => position(props.left, props.middleX)};
-top: ${props => position(props.top, props.middleY)};
-right: ${props => !props.middleX && position(props.right, props.middleX)};
-bottom: ${props => !props.middleY && position(props.bottom, props.middleY)};
-z-index: 100;
-`,
+formatCoordinates = (coordinates) => ({
+  position: "", bottom: "initial", top: "initial",
+  right: "initial", left: "initial", ...coordinates,
+}),
+DockerVehicle = styled.div`
+position: ${props => props.position || "absolute"};
+left: ${props => formatProps(props.left, props.middleX)};
+top: ${props => formatProps(props.top, props.middleY)};
+right: ${props => formatProps(props.right, props.middleX)};
+bottom: ${props => formatProps(props.bottom, props.middleY)};
+transform: ${props => !props.initial ? "initial" : `translate(${props.middleX ? "-50%" : 0}, ${props.middleY ? "-50%" : 0})`};
+`;
+
 /*
-  takes props:
-  position="absolute | relative | ..."
-  top, left, bottom, right
-  middleY, middleX, sticky
+  props:
+  middleY, (a boolean, only a value of truth makes sense)
+  middleX, (a boolean, only a value of truth makes sense)
+  top: (can have a value of a number or just a boolean);
+  bottom: same as top
+  left: same as top
+  right: same as top
+  container (a string that must be an id of the container element that its supposed to act
+  as the container)
+
  */
-Dock = (props) => {
+export default function Docker(props) {
   const
-  [dock, setDock] = useState({position: props.position || "absolute"}),
-  [height, setHeight] = useState(0),
   docker = useRef(null),
-  turnSticky = useCallback((() => {
-    const cords = {
-      yFixed: false,
-      xFixed: false,
-      moving: [],
-    };
-    return () => {
-      if (!cords.hasOwnProperty("yPoints") || !cords.hasOwnProperty("xPoints")) {
-        const positions = Dimensions.get(docker.current, "position");
-        cords.yPoints = [positions.posT];
-        cords.xPoints = [positions.posL];
-      }
-
-      cords.moving.push(Math.round(window.scrollX), Math.round(window.scrollY));
-      if (cords.moving.length <= 4) return null;
-      cords.moving.shift(); cords.moving.shift();
-
-      if (cords.moving[0] === cords.moving[2]) { // moving vertically
-
-        if ((cords.xFixed || cords.yFixed) && !Dimensions.areYpointsCrossed(docker.current, ...cords.yPoints)[0]) {
-          cords.yFixed = false;
-          cords.xFixed = false;
-          setDock({position: "absolute", left: Dimensions.get(docker.current, "relativeWidth").Xpls});
-        }
-        if (!cords.yFixed && Dimensions.areYpointsCrossed(docker.current, ...cords.yPoints)[0]) {
-          cords.yFixed = true;
-          setDock({height: null, position: "fixed", top: 0, left: Dimensions.get(docker.current, "relativeWidth").Xvls});
-        }
-      } else { // moving horizontally
-        if ((cords.yFixed || cords.xFixed) && !Dimensions.areXpointsCrossed(docker.current, ...cords.xPoints)[0]) {
-          cords.xFixed = false;
-          cords.yFixed = false;
-          setDock({position: "absolute", top: Dimensions.get(docker.current, "relativeHeight").Ypts});
-          }
-
-        if (!cords.xFixed && Dimensions.areXpointsCrossed(docker.current, ...cords.xPoints)[0]) {
-          cords.xFixed = true;
-          setDock({position: "fixed", left: 0, top: Dimensions.get(docker.current, "relativeHeight").Yvts});
-        }
-      }
-    };
-  })());
+  [coordinates, setCoordinates] = useState({initial: true});
 
   useEffect(() => {
-    if (!props.sticky) return null;
-    window.addEventListener("scroll", turnSticky);
-    return () => window.removeEventListener("scroll", turnSticky);
+    const dock = Dimensions.keepInContainerViewportBoundaries(
+      docker.current,
+      document.getElementById(props.container)
+    );
+
+    function handleScroll() {
+      const newCoordinates = dock();
+      return newCoordinates ? setCoordinates(formatCoordinates(newCoordinates)) : null;
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <Docker
-      ref={docker}
-      {...props}
-      height={height}
-      {...dock}
-    >
-      {props.children}
-    </Docker>
-  );
-};
-
-export default Dock;
+  return <DockerVehicle ref={docker} {...props} {...coordinates}>
+           {props.children}
+         </DockerVehicle>;
+}
