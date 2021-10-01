@@ -7,7 +7,6 @@ position: relative;
 height: 100%;
 width: ${props => props.toggled ? "0px" : "350px"};
 transition: transform 2s, width 2s;
-z-index: 50;
 
 & * {
 color: ${props => props.toggled ? "transparent !important;" : "initial"};
@@ -41,7 +40,7 @@ height: 100%;
 
 export function Hide({children}) {
   const
-  [toggle, setToggle] = useState(false);
+  [toggle, setToggle] = useState(true);
 
   function handleToggle(e) {
     setToggle(!toggle);

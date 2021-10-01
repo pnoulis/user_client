@@ -1,6 +1,5 @@
 export * from "./Layout";
 import {APP_STORE} from "lib/stores";
-import {ListFlashMessages} from "components/Flash-messages";
 
 
 export function App({children}) {
@@ -8,7 +7,6 @@ export function App({children}) {
   return (
     <APP_STORE.appContext.Provider value={{app, setApp}}>
       {children}
-      <ListFlashMessages/>
     </APP_STORE.appContext.Provider>
   );
 }

@@ -17,9 +17,13 @@ export const FLASHES = {
   FLoginSuccess: (index, flashMessage) => <LoginSuccess key={index} {...flashMessage}/>,
   FOutOfStock: (index, flashMessage) => <OutOfStock key={index} {...flashMessage}/>,
   FCheckout: (index, flashMessage) => <Checkout key={index} {...flashMessage}/>,
+  pager: (index, mount)=> <Mounter key={index} element={mount.element}/>
 };
 
 const
+Mounter = ({element}) => {
+  return element;
+},
 useTimeout = (flashId, timeAlive) => {
   const {setApp} = useAppContext();
   setTimeout(() => setApp("removeFlash", flashId), timeAlive);
@@ -28,22 +32,14 @@ OutOfStock = ({flashId}) => {
   const config = {timeAlive: 7000}; // 7 seconds
   useTimeout(flashId, config.timeAlive);
   return (
-    <article id={flashId} className={style.flashContainer}>
-      <div className={style.imgContainer}>
-        <img
-          src="/beingUsed/user.png"
-          alt="small-user-icon"
-        />
-      </div>
-      <p className={style.message}>
-        Product is out of stock!
-      </p>
-    </article>
+    <FlashMessage id={flashId} className="outofstock">
+      Out of stock!
+    </FlashMessage>
   );
 },
 Checkout = ({flashId}) => {
-  const config = {timeAlive: 4000}; // 7 seconds
-  useTimeout(flashId, config.timeAlive);
+  const config = {timeAlive: 7000}; // 7 seconds
+  // useTimeout(flashId, config.timeAlive);
   function checkout() {
     Router.push("/checkout");
   }

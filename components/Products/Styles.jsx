@@ -9,9 +9,9 @@ display: grid;
 grid-template-columns: minmax(280px, 380px);
 grid-auto-rows: max-content;
 min-width: 100%;
-min-height: 3000px;
+min-height: 100%;
 gap: 50px 50px; // row column
-padding: 50px 20px;
+padding: 50px 20px 0 20px;
 font-size: var(--font-root-regular);
 justify-content: center;
 

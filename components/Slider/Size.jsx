@@ -18,6 +18,9 @@ function Size({parentId, children}) {
   useEffect(() => {
     let height = Math.round(Dimensions.get(document.getElementById(parentId), "relativeHeight").visibleC);
     let padding = Math.round((height - (height * 0.9)) / 2);
+    if (height > 1700) {
+      padding += Math.round((height - 1700) / 2);
+    }
     setSize({height, padding});
     window.addEventListener("resize", resize);
     return () => window.removeEventListener("resize", resize);

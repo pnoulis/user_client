@@ -5,26 +5,29 @@ const
 FlashMessages = styled.article`
 font-size: var(--font-root-regular);
 width: 100%;
-position: fixed;
+position: sticky;
+display: flex;
+flex-flow: column nowrap;
+justify-content: flex-end;
+padding: 30px 3px 0 3px;
+background-color: var(--color-background-grey);
 bottom: 0;
-z-index: 100;
-&:nth-child(1n + 2) {
-margin-top: 10px;
+z-index: 20;
+& > *  {
+margin-bottom: 10px;
 }
 `,
 FlashMessage  = styled.div`
-margin: auto;
+margin-left: auto;
+margin-right: auto;
 display: flex;
 flex-flow: row nowrap;
 align-items: center;
 justify-content: center;
-height: 120px;
+flex: 0 1 120px;
 background-color: var(--color-primary);
 color: var(--color-font);
-max-width: ${props => props.mWidth || "100%"};
 width: 100%;
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
 
 &.checkout {
 font-size: var(--font-size-2large);
@@ -36,5 +39,16 @@ text-transform: capitalize;
 background-color: var(--color-semantic);
 color: white;
 }
+@media (min-width: 800px){
+border-radius: 10px;
 }
+}
+&.outofstock {
+background-color: var(--color-error);
+color: white;
+font-weight: bold;
+letter-spacing: 1px;
+font-size: var(--font-size-2large);
+}
+
 `;

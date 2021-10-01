@@ -12,6 +12,7 @@ left: ${props => position(props.left, props.middleX)};
 top: ${props => position(props.top, props.middleY)};
 right: ${props => !props.middleX && position(props.right, props.middleX)};
 bottom: ${props => !props.middleY && position(props.bottom, props.middleY)};
+z-index: 100;
 `,
 /*
   takes props:

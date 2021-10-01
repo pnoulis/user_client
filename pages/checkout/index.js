@@ -1,5 +1,6 @@
+import {Item} from "components/Cart";
 export default function CART_PAGE() {
   return (
-    <p>hello</p>
+    <Item/>
   );
 }
