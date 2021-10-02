@@ -1,11 +1,48 @@
 // own - utilities
 import {APP_STORE} from "lib/stores";
 const {useAppContext} = APP_STORE;
-import {FlashMessage} from "./Styles";
+import styled from "styled-components";
 import Router from "next/router";
-// styles
-// import style from "./styles/flashes.module.scss";
 const style = {};
+
+const FlashMessage = styled.div`
+margin: auto;
+display: flex;
+flex-flow: row nowrap;
+align-items: center;
+justify-content: center;
+min-height: 50px;
+font-size: var(--font-size-large);
+flex: 1;
+width: 100%;
+background-color: var(--color-primary);
+font-weight: bold;
+letter-spacing: 1px;
+color: var(--color-font);
+max-width: ${props => props.mWidth || "100%"};
+border-radius: 10px;
+&:nth-of-type(n + 1) {
+margin-bottom: 6px;
+};
+
+@media (min-width: 1000px) {
+font-size: vac(--font-size-2large);
+}
+
+&.checkout {
+cursor: pointer;
+text-transform: capitalize;
+&:hover {
+background-color: var(--color-semantic);
+color: white;
+}
+}
+
+&.outofstock {
+background-color: var(--color-error);
+color: white;
+}
+`;
 
 
 export const FLASHES = {
@@ -17,7 +54,7 @@ export const FLASHES = {
   FLoginSuccess: (index, flashMessage) => <LoginSuccess key={index} {...flashMessage}/>,
   FOutOfStock: (index, flashMessage) => <OutOfStock key={index} {...flashMessage}/>,
   FCheckout: (index, flashMessage) => <Checkout key={index} {...flashMessage}/>,
-  pager: (index, mount)=> <Mounter key={index} element={mount.element}/>
+  pager: (index, mount)=> <Mounter key={index} element={mount.element}/>,
 };
 
 const
@@ -39,7 +76,7 @@ OutOfStock = ({flashId}) => {
 },
 Checkout = ({flashId}) => {
   const config = {timeAlive: 7000}; // 7 seconds
-  // useTimeout(flashId, config.timeAlive);
+  useTimeout(flashId, config.timeAlive);
   function checkout() {
     Router.push("/checkout");
   }

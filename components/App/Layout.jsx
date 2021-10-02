@@ -1,29 +1,26 @@
 import styled from "styled-components";
 import Header from "components/Header";
-import {Footer} from "components/Footer";
-import {ListFlashMessages} from "components/Flash-messages";
+import Footer from "components/Footer";
+import ListFlashMessages from "components/Flash-messages";
 
 
 const
 Root = styled.article`
 flex: 1;
-display: grid;
-grid-template-columns: 1fr;
-grid-template-rows: auto 1fr;
+display: flex;
+min-width: 100%;
+min-height: 100%;
+flex-flow: column nowrap;
+background-color: rgba(160, 169, 200, 0.3);
 `,
 HeaderWrapper = styled.header`
-grid-column: 1/2;
-grid-row: 1/2;
 `,
 Main = styled.main`
-grid-column: 1/2;
-grid-row: 2/3;
-background-color: inherit;
-display: ${props => props.center && "flex"};
-justify-content: ${props => props.center && "center"};
-align-items: ${props => props.center && "center"};
+flex: 1;
+min-width: 100%;
+min-height: 100%;
+display: flex;
 position: relative;
-padding: 2px 2px 30px 2px;
 `,
 FooterWrapper = styled.footer`
 `;
@@ -36,7 +33,7 @@ StandardLayout = ({children}) => {
       <HeaderWrapper>
         <Header/>
       </HeaderWrapper>
-      <Main>
+      <Main id="main-content">
         {children}
         <ListFlashMessages/>
       </Main>

@@ -40,7 +40,8 @@ export default function Docker(props) {
   [coordinates, setCoordinates] = useState({initial: true});
 
   useEffect(() => {
-    const dock = Dimensions.keepInContainerViewportBoundaries(
+    const
+    dock = Dimensions.keepInContainerViewportBoundaries(
       docker.current,
       document.getElementById(props.container)
     );
@@ -50,6 +51,7 @@ export default function Docker(props) {
       return newCoordinates ? setCoordinates(formatCoordinates(newCoordinates)) : null;
     }
 
+    setTimeout(() => handleScroll(), 100);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

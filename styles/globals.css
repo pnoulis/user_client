@@ -10,9 +10,6 @@ body {
                  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
 
-    background-color: rgba(160, 169, 200, 0.1);
-
-
     /*
           FONTS-SIZES
    */
@@ -66,9 +63,6 @@ a {
 
 #__next {
     flex: 1;
-    display: flex;
-    flex-flow: column nowrap;
-    background-color: inherit;
 }
 
 .visually-hide-element {

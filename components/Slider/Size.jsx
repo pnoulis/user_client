@@ -10,13 +10,13 @@ height: ${props => props.height ? props.height + "px" : "100%"};
 function Size({parentId, children}) {
   const [size, setSize] = useState({}),
         resize = useCallback(() => {
-          let height = Math.round(Dimensions.get(document.getElementById(parentId), "relativeHeight").visibleC);
+          let height = Math.round(Dimensions.get(document.getElementById(parentId), "visible")("cy"));
           let padding = Math.round((height - (height * 0.9)) / 2);
           setSize({height, padding});
         });
 
   useEffect(() => {
-    let height = Math.round(Dimensions.get(document.getElementById(parentId), "relativeHeight").visibleC);
+    let height = Math.round(Dimensions.get(document.getElementById(parentId), "visible")("cy"));
     let padding = Math.round((height - (height * 0.9)) / 2);
     if (height > 1700) {
       padding += Math.round((height - 1700) / 2);

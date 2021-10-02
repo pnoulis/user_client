@@ -75,8 +75,8 @@ function Slider({type, children}) {
 
 
   useEffect(() => {
-    let sliderHeight = Dimensions.get(slider.current, "height").offsetHeight;
-    let contentHeight = Dimensions.get(content.current, "height").offsetHeight;
+    let sliderHeight = Dimensions.get(slider.current, "height")("Hsbop");
+    let contentHeight = Dimensions.get(content.current, "height")("Hsbop");
     contentHeight = sliderHeight + contentHeight - Math.round(contentHeight / children.length);
     setHeight(contentHeight);
   }, [slider, content]);
@@ -109,7 +109,7 @@ function SliderNode({id, setSelected, selected, children}) {
 
   useEffect(() => {
     if (selected) {
-      node.current.parentElement.parentElement.scrollTop = Dimensions.get(node.current, "relativeHeight").Ypts - 13;
+      node.current.parentElement.parentElement.scrollTop = node.current.offsetTop - 13;
     }
   }, [selected]);
 
