@@ -82,7 +82,7 @@ export default function ListFlashMessages() {
   }, [app.flashMessages]);
 
   return !app.flashMessages.length ? null :
-    <Dock bottom left container="main-content">
+    <Dock key={resize + app.flashMessages.length} bottom left container="main-content">
       <FixWidth>
         {flashes.length && flashes.map((fm, i) => fm.get(i))}
       </FixWidth>
