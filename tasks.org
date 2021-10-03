@@ -1,0 +1,15 @@
+* flashMessages v2
+** DONE flashMessage timers must have the capability to renew their timer
+   CLOSED: [2021-10-03 Sun 20:00]
+   upon addition of an identical flashMessage  the component must renew its timer
+
+   use a closure to keep a record of all flashMessage timers.
+   which allows their centralized management and handling.
+   
+** DONE flashMessages should have the ability to select their order of appearance in the stack
+   CLOSED: [2021-10-03 Sun 20:00]
+** DONE flashMessages should have the ability to mount arbitrary components
+   CLOSED: [2021-10-03 Sun 20:38]
+   using mounter
+** DONE A flashMessage should have the ability to overwrite its own configuration 
+   CLOSED: [2021-10-03 Sun 20:00]
