@@ -66,9 +66,11 @@ useResizeEvent = () => {
   const [resize, setResize ] = useState(0);
 
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    function handleResize() {
       setResize((Math.random() + 1).toString(36).substring(7));
-    });
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return resize;

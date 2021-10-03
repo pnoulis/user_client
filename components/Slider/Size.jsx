@@ -3,7 +3,7 @@ import {Dimensions} from "lib/utils";
 import styled from "styled-components";
 
 const SizeWrapper = styled.div`
-padding-top: ${props => props.padding + "px"};
+padding-top: ${props => props.padding + 50 + "px"};
 padding-bottom: ${props => props.padding + "px"};
 height: ${props => props.height ? props.height + "px" : "100%"};
 `;

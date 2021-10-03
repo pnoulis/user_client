@@ -13,7 +13,7 @@ align-items: center;
 justify-content: center;
 min-height: 50px;
 font-size: var(--font-size-large);
-flex: 1;
+flex: 1 1 50px;
 width: 100%;
 background-color: var(--color-primary);
 font-weight: bold;
@@ -25,9 +25,11 @@ border-radius: 10px;
 margin-bottom: 6px;
 };
 
-@media (min-width: 1000px) {
+@media (min-width: 1100px) {
 font-size: vac(--font-size-2large);
+flex: 1 1 80px;
 }
+
 
 &.checkout {
 cursor: pointer;

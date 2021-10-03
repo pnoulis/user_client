@@ -50,7 +50,7 @@ gap: 20px 15px;
 `,
 BuyArea = styled.p`
 // layout - dimensions
-flex: 0 70px;
+flex: 0 50px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -77,6 +77,9 @@ font-size: var(--font-size-3large);
 opacity: 0.7;
 }
 
+@media (min-width: 800px) {
+flex: 0 70px;
+}
 `,
 Price = styled.p`
 // fonts

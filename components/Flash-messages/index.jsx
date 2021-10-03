@@ -12,8 +12,8 @@ font-size: var(--font-root-regular);
 width: ${props => props.width ? props.width + "px" : "auto"};
 display: flex;
 flex-flow: column nowrap;
-padding: 5px 10px;
-z-index: 100;
+z-index: 50;
+padding: 0 10px;
 `,
 FixWidth = (props) => {
   const [width, setWidth] = useState(0);

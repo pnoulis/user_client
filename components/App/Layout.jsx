@@ -13,8 +13,6 @@ min-height: 100%;
 flex-flow: column nowrap;
 background-color: rgba(160, 169, 200, 0.3);
 `,
-HeaderWrapper = styled.header`
-`,
 Main = styled.main`
 flex: 1;
 min-width: 100%;
@@ -30,9 +28,7 @@ const
 StandardLayout = ({children}) => {
   return (
     <Root>
-      <HeaderWrapper>
-        <Header/>
-      </HeaderWrapper>
+      <Header/>
       <Main id="main-content">
         {children}
         <ListFlashMessages/>

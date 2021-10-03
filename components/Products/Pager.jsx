@@ -4,19 +4,22 @@ const
 Pages = styled.div`
 display: flex;
 flex-flow: row nowrap;
-height: max-content;
-width: max-content;
-margin-left: auto;
-margin-right: auto;
-margin-bottom: 20px;
+width: 100%;
+min-height: 40px;
 justify-content: center;
 align-items: center;
+background-color: var(--color-secondary);
+margin-bottom: 6px;
+border-radius: 10px;
+
+@media (min-width: 1100px) {
+height: 60px;
+}
 `,
 PageTurner = styled.p`
-flex: 1;
 box-sizing: content-box;
-padding: 10px 30px;
-width: 40px;
+padding: 5px 20px;
+width: 25px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -28,11 +31,17 @@ width: 100%;
 height: 100%;
 transform: ${props => props.left && "rotate(180deg)"};
 }
+
+@media (min-width: 1100px) {
+width: 35px;
+}
 `,
 Page = styled.span`
 box-sizing: content-box;
-width: 40px;
-height: 40px;
+// width: 40px;
+// height: 40px;
+width: 30px;
+height: 30px;
 display: flex;
 justify-content: center;
 align-items: center;
