@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Router from "next/router";
 
 const
 Pages = styled.div`
@@ -62,11 +63,16 @@ margin-right: 4px;
 }
 `;
 
-function Pager({pages, handleNextPage}) {
-
+function Pager({pages, category}) {
+  function handlePageTurn(next) {
+    let nextPage = pages.findIndex(pg => !!pg);
+    nextPage += next ? 1 : -1;
+    if (nextPage > pages.length - 1 || nextPage < 0) return null;
+    window.location = `/products/${category}?page=${nextPage + 1}`;
+  };
   return (
     <Pages>
-      <PageTurner left>
+      <PageTurner left onClick={() => handlePageTurn(false)}>
         <img src="/right-arrow-angle.png" alt="left-arrow"/>
       </PageTurner>
       {pages.map((page, i) => {
@@ -74,11 +80,10 @@ function Pager({pages, handleNextPage}) {
           <Page key={i} selected={page}>{i + 1}</Page>
         );
       })}
-      <PageTurner>
+      <PageTurner onClick={() => handlePageTurn(true)}>
         <img src="/right-arrow-angle.png" alt="right-arrow"/>
       </PageTurner>
     </Pages>
-
   );
 }
 export default Pager;

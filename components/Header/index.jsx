@@ -14,9 +14,9 @@ const nav = {
     {href: "/company", name: "company"},
     {href: "/something", name: "something"},
     {href: "/shop", name: "shop", secondary: [
-      {href: "/products/meat", name: "meat"},
-      {href: "/products/fish", name: "fish"},
-      {href: "/products/vegetables", name: "vegetables"},
+      {href: "/products/meat?page=1", name: "meat"},
+      {href: "/products/fish?page=1", name: "fish"},
+      {href: "/products/vegetables?page=1", name: "vegetables"},
     ]},
   ],
   user: [

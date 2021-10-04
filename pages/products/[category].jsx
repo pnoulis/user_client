@@ -2,16 +2,16 @@ import {StandardLayout} from "components/App";
 import backend from "lib/backend";
 import Products from "components/Products";
 
-export default function PRODUCTS_PAGE({products, pages}) {
+export default function PRODUCTS_PAGE({products, pages, current, category}) {
   return (
     <StandardLayout>
-      <Products products={products} pages={pages}/>
+      <Products key={current} products={products} pages={pages} current={current} category={category}/>
     </StandardLayout>
   );
 }
 
 export async function getServerSideProps(context) {
-  const res = await backend.get({url: `/products/${context.params.category}`});
+  const res = await backend.get({url: `/products/${context.query.category}/${context.query.page}`});
   const payload = res.payload;
 
   if (payload.redirect) {
@@ -22,5 +22,7 @@ export async function getServerSideProps(context) {
       },
     };
   }
+
+  payload.category = context.params.category;
   return {props: payload};
 }

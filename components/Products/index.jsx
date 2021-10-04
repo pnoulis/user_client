@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import * as Styles from "./Styles";
+import Router from "next/router";
 import {useBackend, renderStatus} from "lib/hooks";
 import {Product} from "./Product";
 import {APP_STORE} from "lib/stores";
@@ -16,10 +17,10 @@ const loadingStyle = {
     boxShadow: "0 0 10px var(--color-semantic)",
   },
 };
-
-export default function Products({products, pages}) {
+let initialized = false;
+export default function Products({products, pages, current, category}) {
   const
-  [onPage, setOnPage] = useState(new Array(3).fill(0).fill(true, 0, 1)),
+  [onPage, setOnPage] = useState(new Array(pages).fill(0).fill(true, current, current + 1)),
   {setReq, status, res} = useBackend(),
   {app, setApp} = APP_STORE.useAppContext();
 
@@ -29,9 +30,8 @@ export default function Products({products, pages}) {
       amount: 1,
     }});
   }
-
   useEffect(() => {
-    setApp("addFlash", {flashId: "pager", element: (<Pager pages={onPage}/>)});
+    setApp("addFlash", {flashId: "pager", element: (<Pager pages={onPage} category={category}/>)});
     return () => setApp("removeFlash", "pager");
   }, []);
 
