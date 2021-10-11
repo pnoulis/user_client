@@ -73,6 +73,7 @@ export default function ListFlashMessages() {
   [flashes, setFlashes] = useState([]),
   resize = useResizeEvent();
 
+  console.log(flashes);
   useEffect(() => {
     if (app.flashMessages.length === flashes.length) return null;
     return setFlashes(
@@ -84,7 +85,7 @@ export default function ListFlashMessages() {
   return !app.flashMessages.length ? null :
     <Dock key={resize + app.flashMessages.length} bottom left container="main-content">
       <FixWidth>
-        {flashes.length && flashes.map((fm, i) => fm.get(i))}
+        {flashes.map((fm, i) => fm.get(i))}
       </FixWidth>
     </Dock>;
 }
