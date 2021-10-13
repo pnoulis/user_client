@@ -30,10 +30,14 @@ export default function Products({products, pages, current, category}) {
       amount: 1,
     }});
   }
+
   useEffect(() => {
-    setApp("addFlash", {flashId: "pager", element: (<Pager pages={onPage} category={category}/>)});
-    return () => setApp("removeFlash", "pager");
-  }, []);
+    setTimeout(() =>
+      setApp("addFlash",
+             {flashId: "pager", el: (<Pager pages={onPage} category={category}/>)}),
+      200);
+    return () => setApp("rmFlash", "pager");
+  }, [current, category, pages]);
 
   useEffect(() => {
     if (!res) return null;
@@ -49,7 +53,7 @@ export default function Products({products, pages, current, category}) {
       i < 7 && <Product key={i} id={i} product={pr} requestStock={requestStock} />
     ))}
     <Dock top left container="container">
-      <Size parentId="container">
+      <Size container="container">
         <Hide>
           <Slider>
             <SliderCard level={0}>hello</SliderCard>

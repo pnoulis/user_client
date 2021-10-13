@@ -1,8 +1,5 @@
-// own - utilities
-import {APP_STORE} from "lib/stores";
-const {useAppContext} = APP_STORE;
+import React from "react";
 import styled from "styled-components";
-import Router from "next/router";
 const style = {};
 
 const FlashMessage = styled.div`
@@ -46,8 +43,7 @@ color: white;
 }
 `;
 
-
-export const FLASHES = {
+const FLASHES = {
   FCheckout: (overwriteConfig = {}) => {
     const config = {timeAlive: 7000, order: 2, ...overwriteConfig};
     return {
@@ -66,14 +62,14 @@ export const FLASHES = {
     const config = {timeAlive: null, order: 1, ...overwriteConfig};
     return {
       config,
-      get: key => <Mounter key={key} {...config}/>
+      get: key => (<Mounter key={key} {...config}/>),
     };
   },
   FRegisterDuplicate: (overwriteConfig = {}) => {
     const config = {timeAlive: 7000, order: 0, ...overwriteConfig};
     return {
       config,
-      get: key => <RegisterDuplicate key={key} {...config}/>
+      get: key => <AccountDuplicate key={key} {...config}/>
     };
   },
   FRegisterFailure: (overwriteConfig = {}) => {
@@ -111,9 +107,10 @@ export const FLASHES = {
     };
   },
 };
+
 const
-Mounter = ({element}) => {
-  return element;
+Mounter = ({el}) => {
+  return React.isValidElement(el) ? el : null;
 },
 OutOfStock = () => {
   return (
@@ -124,7 +121,7 @@ OutOfStock = () => {
 },
 Checkout = () => {
   function checkout() {
-    Router.push("/checkout");
+    // Router.push("/checkout");
   }
   return (
     <FlashMessage className="checkout" onClick={checkout}>
@@ -223,3 +220,6 @@ LoginSuccess = () => {
     </article>
   );
 };
+
+
+export default FLASHES;

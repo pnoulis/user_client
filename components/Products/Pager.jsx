@@ -68,7 +68,7 @@ function Pager({pages, category}) {
     let nextPage = pages.findIndex(pg => !!pg);
     nextPage += next ? 1 : -1;
     if (nextPage > pages.length - 1 || nextPage < 0) return null;
-    window.location = `/products/${category}?page=${nextPage + 1}`;
+    Router.push(`/products/${category}/${nextPage + 1}`);
   };
   return (
     <Pages>

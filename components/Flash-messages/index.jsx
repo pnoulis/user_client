@@ -1,91 +1,72 @@
-import {useState, useEffect} from "react";
-import {Dimensions, SORTING_FUNCTIONS} from "lib/utils";
+import React, {useState, useEffect, useCallback} from "react";
+import {useTimeout} from "lib/hooks";
+import Flashes from "./Flashes";
 import {APP_STORE} from "lib/stores";
-import {FLASHES} from "./Flashes";
-import Dock from "components/Docker";
+import {Dimensions, SORTING_FUNCTIONS} from "lib/utils";
+import Docker from "components/Docker";
 import styled from "styled-components";
-import {useResizeEvent} from "lib/hooks";
 
 const
-makeFTimers = () => {
-  const FTimers = {};
-  return {
-    add: (flashId, timerId) => FTimers[flashId] = timerId,
-    get: (flashId) => FTimers[flashId],
-    del: (flashId) => delete FTimers[flashId],
-    show: () => FTimers,
-  };
-},
-FSystem = {};
-FSystem.timers = makeFTimers();
-FSystem.setTimer = function(flash, appReducer) {
-  this.timers.add(
-    flash.config.flashId,
-    setTimeout(() => appReducer("removeFlash", flash.config.flashId),
-               flash.config.timeAlive),
-  );
-};
-FSystem.renewTimer = function(flash, appReducer) {
-  window.clearTimeout(this.timers.get(flash.config.flashId));
-  this.setTimer(flash, appReducer);
-};
-FSystem.sortFlashes = (flashMessages) => SORTING_FUNCTIONS.order.decr("config.order", flashMessages);
-FSystem.add = function(flashMessages, appReducer) {
-  let copy = flashMessages.map(fm => FLASHES[fm.flashId](fm));
-  const lastAdded = copy.pop();
-
-  if (copy.some(fm => fm.config.flashId === lastAdded.config.flashId)) {
-    lastAdded.config.timeAlive && this.renewTimer(lastAdded, appReducer);
-  } else {
-    copy.push(lastAdded);
-    lastAdded.config.timeAlive && this.setTimer(lastAdded, appReducer);
-  }
-
-  return this.sortFlashes(copy);
-};
-FSystem.remove = (fms) => FSystem.sortFlashes(fms.map(fm => FLASHES[fm.flashId](fm)));
-
-const
-FlashMessages= styled.article`
+FlashMessagesWrapper = styled.article`
 font-size: var(--font-root-regular);
 width: ${props => props.width ? props.width + "px" : "auto"};
+box-sizing: border-box;
+max-width: 100vw;
 display: flex;
 flex-flow: column nowrap;
 z-index: 50;
 padding: 0 10px;
 `,
-FixWidth = (props) => {
+FlashMessages = ({container, children}) => {
   const [width, setWidth] = useState(0);
   useEffect(() => {
     setWidth(
-      Dimensions.get(document.getElementById("main-content"), "width")("Wop")
+      Dimensions.get(document.getElementById(container), "width")("Wop")
     );
-  }, []);
+  }, [setWidth]);
 
-  return <FlashMessages width={width}>
-           {props.children}
-         </FlashMessages>;
+  return (
+    <FlashMessagesWrapper width={width}>
+      {children}
+    </FlashMessagesWrapper>
+  );
+},
+sortFlashes = (flashes) => SORTING_FUNCTIONS.order.decr("config.order", flashes),
+addFlash = (fms, flashes) => {
+  const lastAdded = {...fms[fms.length - 1]};
+  const duplicate = flashes.findIndex(flash => flash.config.flashId === lastAdded.flashId);
+  return (duplicate === -1)
+    ? [flashes.length, [...flashes, Flashes[lastAdded.flashId](lastAdded)]]
+    : [duplicate, flashes.map((flash, i) => i !== duplicate ? flash : Flashes[lastAdded.flashId](lastAdded))];
+},
+rmFlash = (fms, flashes) => flashes.filter(flash => fms.some(fm => fm.flashId === flash.config.flashId)),
+ListFlashMessages = ({container}) => {
+  const {app, setApp} = APP_STORE.useAppContext();
+  const {fms} = app;
+  const [flashes, setFlashes] = useState([]);
+  const flashTimeout = useTimeout();
+
+  useEffect(() => {
+    if (flashes.length === fms.length) return null;
+    if (fms.length < flashes.length) {
+      return setFlashes(sortFlashes(rmFlash(fms, flashes)));
+    }
+    if (fms.length > flashes.length) {
+      const [index, newFlashes] = addFlash(fms, flashes);
+      const {flashId, timeAlive} = newFlashes[index].config;
+      timeAlive && flashTimeout(() => setApp("rmFlash", flashId), flashId, timeAlive);
+      newFlashes.length === flashes.length && setTimeout(() => setApp("popFlash"), 1000);
+      setFlashes(sortFlashes(newFlashes));
+    }
+  }, [fms]);
+
+  return (
+    <Docker bottom left container={container}>
+      <FlashMessages container={container}>
+        {flashes.map((flash, i) => flash.get(i))}
+      </FlashMessages>
+    </Docker>
+  );
 };
 
-export default function ListFlashMessages() {
-  const
-  {app, setApp} = APP_STORE.useAppContext(),
-  [flashes, setFlashes] = useState([]),
-  resize = useResizeEvent();
-
-  console.log(flashes);
-  useEffect(() => {
-    if (app.flashMessages.length === flashes.length) return null;
-    return setFlashes(
-      (app.flashMessages.length > flashes.length) ? FSystem.add(app.flashMessages, setApp) :
-        FSystem.remove(app.flashMessages)
-    );
-  }, [app.flashMessages]);
-
-  return !app.flashMessages.length ? null :
-    <Dock key={resize + app.flashMessages.length} bottom left container="main-content">
-      <FixWidth>
-        {flashes.map((fm, i) => fm.get(i))}
-      </FixWidth>
-    </Dock>;
-}
+export default ListFlashMessages;

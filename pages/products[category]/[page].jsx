@@ -1,11 +1,12 @@
-import {StandardLayout} from "components/App";
-import backend from "lib/backend";
+import {StandardLayout} from "components/APP";
+import {backend} from "lib/utils";
 import Products from "components/Products";
 
 export default function PRODUCTS_PAGE({products, pages, current, category}) {
   return (
     <StandardLayout>
       <Products key={current} products={products} pages={pages} current={current} category={category}/>
+      <p>hello</p>
     </StandardLayout>
   );
 }
