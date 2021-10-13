@@ -18,4 +18,16 @@
   
 ** TODO create a hook that allows to persist state across browser refreshes
 ** TODO hook should have the ability to allow the sharing of state across tabs
-* TODO split stores that should be persistent and not persistent
+* TODO split stores that should be persistent and not
+** persistent state
+cart
+logged in
+** persistent events
+session timeout
+** not persistent events
+flash messages
+key
+
+** how
+components should not differentiate between private and public state.
+proxy should be directing actions to their proper dispatcher

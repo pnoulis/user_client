@@ -58,10 +58,10 @@ export default function App({children}) {
     );
   }, [app.loggedIn]);
 
-  // on mount
+  //on mount
   useEffect(() => {
     backend.get({url: "/session"})
-      .then(res => res.ok && setTimeout(() =>setApp("login", res.payload), 5000))
+      .then(res => res.ok && setTimeout(() => setApp("login", res.payload), 1000))
       .catch(err => console.log(err));
   }, [children]);
 
