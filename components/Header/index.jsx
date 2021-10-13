@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {Dimensions} from "lib/utils";
 import Router from "next/router";
 import Link from "next/link";
-import {useResizeEvent} from "lib/hooks";
 import Navigation from "./Navigation";
 import {Account, Login} from "./User";
 import {APP_STORE} from "lib/stores";
@@ -14,9 +13,9 @@ const nav = {
     {href: "/company", name: "company"},
     {href: "/something", name: "something"},
     {href: "/shop", name: "shop", secondary: [
-      {href: "/products/meat?page=1", name: "meat"},
-      {href: "/products/fish?page=1", name: "fish"},
-      {href: "/products/vegetables?page=1", name: "vegetables"},
+      {href: "/products/meat/1", name: "meat"},
+      {href: "/products/fish/1", name: "fish"},
+      {href: "/products/vegetables/1", name: "vegetables"},
     ]},
   ],
   user: [
@@ -33,11 +32,11 @@ export default function Header() {
   const
   [sticky, setSticky] = useState({position: "static"}),
   [menu, setMenu] = useState(false),
-  {app} = APP_STORE.useAppContext(),
-  resize = useResizeEvent(onMobileScroll(setSticky));
+  {app} = APP_STORE.useAppContext();
 
   useEffect(() => {
     const makeSticky = onMobileScroll(setSticky);
+    makeSticky();
     window.addEventListener("scroll", makeSticky);
     return () => window.removeEventListener("scroll", makeSticky);
   }, []);

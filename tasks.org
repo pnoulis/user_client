@@ -13,3 +13,21 @@
    using mounter
 ** DONE A flashMessage should have the ability to overwrite its own configuration 
    CLOSED: [2021-10-03 Sun 20:00]
+* usePersistentState Hook
+  it should provide the option of encryping the contents of the state
+  
+** TODO create a hook that allows to persist state across browser refreshes
+** TODO hook should have the ability to allow the sharing of state across tabs
+* TODO split stores that should be persistent and not
+** persistent state
+cart
+logged in
+** persistent events
+session timeout
+** not persistent events
+flash messages
+key
+
+** how
+components should not differentiate between private and public state.
+proxy should be directing actions to their proper dispatcher

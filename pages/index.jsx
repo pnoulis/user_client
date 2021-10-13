@@ -1,7 +1,6 @@
-import {StandardLayout, NoLayout} from "components/App";
-import {LoginDashboard, RegisterDashboard} from "components/Auth";
+import {StandardLayout, NoLayout} from "components/APP";
 export default function INDEX_PAGE() {
   return (
-    <StandardLayout><RegisterDashboard/></StandardLayout>
+    <StandardLayout></StandardLayout>
   );
 }

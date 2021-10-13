@@ -40,6 +40,7 @@ export default function Docker(props) {
   [coordinates, setCoordinates] = useState({initial: true});
 
   useEffect(() => {
+    if (!props.children || !props.children.length) return null;
     const
     dock = Dimensions.keepInContainerViewportBoundaries(
       docker.current,
