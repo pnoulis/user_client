@@ -63,7 +63,7 @@ export default function App({children}) {
     backend.get({url: "/session"})
       .then(res => res.ok && setTimeout(() => setApp("login", res.payload), 1000))
       .catch(err => console.log(err));
-  }, [children]);
+  }, []);
 
   // on resize event
   useEffect(() => {

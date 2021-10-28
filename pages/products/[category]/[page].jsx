@@ -6,7 +6,6 @@ export default function PRODUCTS_PAGE({products, pages, current, category}) {
   return (
     <StandardLayout>
       <Products key={current} products={products} pages={pages} current={current} category={category}/>
-      <p>hello</p>
     </StandardLayout>
   );
 }
@@ -15,6 +14,8 @@ export async function getServerSideProps(context) {
   const res = await backend.get({url: `/products/${context.query.category}/${context.query.page}`});
   const payload = res.payload;
 
+  console.log("res");
+  console.log(res);
   if (payload.redirect) {
     return {
       redirect: {
