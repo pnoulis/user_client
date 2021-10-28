@@ -65,14 +65,9 @@ margin-right: 4px;
 
 function Pager({pages, category}) {
   function handlePageTurn(next) {
-    console.log(`called ${next ? "next" : "previous"}`);
     let nextPage = pages.findIndex(pg => !!pg);
     nextPage += next ? 1 : -1;
-    console.log(`next page ${nextPage}`);
-    console.log(`pages length ${pages}`);
     if (nextPage > pages.length - 1 || nextPage < 0) return null;
-    console.log("will push next");
-    console.log(`next page ${nextPage + 1}`);
     Router.push(`/products/${category}/${nextPage + 1}`);
   };
   return (

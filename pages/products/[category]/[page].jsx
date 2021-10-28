@@ -14,8 +14,6 @@ export async function getServerSideProps(context) {
   const res = await backend.get({url: `/products/${context.query.category}/${context.query.page}`});
   const payload = res.payload;
 
-  console.log("res");
-  console.log(res);
   if (payload.redirect) {
     return {
       redirect: {

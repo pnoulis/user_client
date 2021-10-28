@@ -32,3 +32,12 @@ key
 ** how
 components should not differentiate between private and public state.
 proxy should be directing actions to their proper dispatcher
+
+* TODO implement product filters and sorting function delivery system
+* TODO implement footer
+* TODO implement shopping card page
+* TODO implement address
+* TODO implement user account
+* TODO implement checkout header
+* TODO implement user account header
+* TODO implement checkout review page
