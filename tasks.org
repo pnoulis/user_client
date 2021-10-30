@@ -1,3 +1,4 @@
+#+SEQ_TODO: TODO DOING WORKING | DONE
 * flashMessages v2
 ** DONE flashMessage timers must have the capability to renew their timer
    CLOSED: [2021-10-03 Sun 20:00]
@@ -33,6 +34,10 @@ key
 components should not differentiate between private and public state.
 proxy should be directing actions to their proper dispatcher
 
+* DONE implement a central data store used by components
+CLOSED: [2021-10-30 Sat 12:44]
+** DONE backend now has dedicated route for servicing requests to non-user resources
+CLOSED: [2021-10-30 Sat 00:39]
 * TODO implement product filters and sorting function delivery system
 * TODO implement footer
 * TODO implement shopping card page

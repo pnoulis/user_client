@@ -1,262 +1,262 @@
-@use "styles/colors";
-.footer {
-    background-color: colors.$yellow-bright-1;
-    padding: 20px 5px 0 5px;
-}
+/* /\* @use "styles/colors"; *\/ */
+/* .footer { */
+/*     background-color: colors.$yellow-bright-1; */
+/*     padding: 20px 5px 0 5px; */
+/* } */
 
 
-.secNav {
-    padding: 15px 0;
-    .navList {
-        list-style-type: none;
-        .headerLitem {
-            .header {
-                color: colors.$blue-darkNavy-b90-1;
-                text-align: center;
-                font-size: 1.2rem;
-                font-weight: bold;
-                text-transform: capitalize;
-            }
-            margin-bottom: 10px;
-        }
+/* .secNav { */
+/*     padding: 15px 0; */
+/*     .navList { */
+/*         list-style-type: none; */
+/*         .headerLitem { */
+/*             .header { */
+/*                 color: colors.$blue-darkNavy-b90-1; */
+/*                 text-align: center; */
+/*                 font-size: 1.2rem; */
+/*                 font-weight: bold; */
+/*                 text-transform: capitalize; */
+/*             } */
+/*             margin-bottom: 10px; */
+/*         } */
 
-        .navLitem {
-            .link {
-                color: colors.$blue-darkNavy-b90-1;
-                text-align: center;
-                display: block;
-                padding: 5px;
-                font-size: 1.1rem;
-                letter-spacing: 1px;
+/*         .navLitem { */
+/*             .link { */
+/*                 color: colors.$blue-darkNavy-b90-1; */
+/*                 text-align: center; */
+/*                 display: block; */
+/*                 padding: 5px; */
+/*                 font-size: 1.1rem; */
+/*                 letter-spacing: 1px; */
 
-                &:hover {
-                    color: colors.$grey-phosSilver-1;
-                }
-            }
-        }
-    }
-}
+/*                 &:hover { */
+/*                     color: colors.$grey-phosSilver-1; */
+/*                 } */
+/*             } */
+/*         } */
+/*     } */
+/* } */
 
-.secCompany {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    padding-top: 30px;
-    max-width: 400px;
-    margin: auto;
-    .logo {
-        .logoLink {
-            display: inline-block;
-            box-sizing: content-box;
-            width: 70px;
-            padding: 5px 15px;
-            img {
-                display: inline-block;
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-    .address {
-        text-align: right;
-        margin-right: 20px;
-        flex: 1;
-        font-size: 0.9rem;
-        display: flex;
-        flex-flow: column nowrap;
-        color: colors.$blue-darkNavy-b90-1;
-        .street {
-        }
-        .postcode {
-        }
-        .citycountry {
-            .city {
-                text-transform: capitalize;
-            }
-            .country {
-                margin-left: 10px;
-                text-transform: uppercase;
-            }
-        }
-        .mobile {
-            margin-top: 15px;
-        }
-        .emails {
-            display: flex;
-            flex-flow: column nowrap;
-            email {
-            }
-        }
-    }
+/* .secCompany { */
+/*     display: flex; */
+/*     flex-flow: row nowrap; */
+/*     align-items: center; */
+/*     padding-top: 30px; */
+/*     max-width: 400px; */
+/*     margin: auto; */
+/*     .logo { */
+/*         .logoLink { */
+/*             display: inline-block; */
+/*             box-sizing: content-box; */
+/*             width: 70px; */
+/*             padding: 5px 15px; */
+/*             img { */
+/*                 display: inline-block; */
+/*                 width: 100%; */
+/*                 height: 100%; */
+/*             } */
+/*         } */
+/*     } */
+/*     .address { */
+/*         text-align: right; */
+/*         margin-right: 20px; */
+/*         flex: 1; */
+/*         font-size: 0.9rem; */
+/*         display: flex; */
+/*         flex-flow: column nowrap; */
+/*         color: colors.$blue-darkNavy-b90-1; */
+/*         .street { */
+/*         } */
+/*         .postcode { */
+/*         } */
+/*         .citycountry { */
+/*             .city { */
+/*                 text-transform: capitalize; */
+/*             } */
+/*             .country { */
+/*                 margin-left: 10px; */
+/*                 text-transform: uppercase; */
+/*             } */
+/*         } */
+/*         .mobile { */
+/*             margin-top: 15px; */
+/*         } */
+/*         .emails { */
+/*             display: flex; */
+/*             flex-flow: column nowrap; */
+/*             email { */
+/*             } */
+/*         } */
+/*     } */
 
-    @media (min-width: 600px) {
-        .logo {
-            .logoLink {
-                width: 80px;
-            }
-        }
-    }
+/*     @media (min-width: 600px) { */
+/*         .logo { */
+/*             .logoLink { */
+/*                 width: 80px; */
+/*             } */
+/*         } */
+/*     } */
 
-    @media (min-width: 800px) {
-        .logo {
-            .logoLink {
-                width: 90px;
-            }
-        }
-    }
+/*     @media (min-width: 800px) { */
+/*         .logo { */
+/*             .logoLink { */
+/*                 width: 90px; */
+/*             } */
+/*         } */
+/*     } */
 
-}
+/* } */
 
-.secConnect {
-    padding-top: 30px;
-    .connect {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        .withus {
-            margin-right: 15px;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            color: colors.$blue-darkNavy-b90-1;
-            font-weight: bold;
-        }
+/* .secConnect { */
+/*     padding-top: 30px; */
+/*     .connect { */
+/*         display: flex; */
+/*         flex-flow: row nowrap; */
+/*         align-items: center; */
+/*         .withus { */
+/*             margin-right: 15px; */
+/*             font-size: 1rem; */
+/*             letter-spacing: 0.5px; */
+/*             color: colors.$blue-darkNavy-b90-1; */
+/*             font-weight: bold; */
+/*         } */
 
-        .socialLink {
-            box-sizing: content-box;
-            display: inline-block;
-            width: 25px;
-            height: 25px;
-            padding: 5px 10px;
-            img {
-                display: inline-block;
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-}
+/*         .socialLink { */
+/*             box-sizing: content-box; */
+/*             display: inline-block; */
+/*             width: 25px; */
+/*             height: 25px; */
+/*             padding: 5px 10px; */
+/*             img { */
+/*                 display: inline-block; */
+/*                 width: 100%; */
+/*                 height: 100%; */
+/*             } */
+/*         } */
+/*     } */
+/* } */
 
-.secCopyrights {
-    margin-top: 10px;
-    border-top: 2px solid black;
-    padding: 10px 5px 5px 0;
-    .copyrights {
-        font-size: 0.8rem;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        .copy {
-            text-transform: uppercase;
-        }
-        .created {
-            font-weight: bold;
-        }
-    }
-}
+/* .secCopyrights { */
+/*     margin-top: 10px; */
+/*     border-top: 2px solid black; */
+/*     padding: 10px 5px 5px 0; */
+/*     .copyrights { */
+/*         font-size: 0.8rem; */
+/*         display: flex; */
+/*         flex-flow: row nowrap; */
+/*         justify-content: space-between; */
+/*         .copy { */
+/*             text-transform: uppercase; */
+/*         } */
+/*         .created { */
+/*             font-weight: bold; */
+/*         } */
+/*     } */
+/* } */
 
-@media (min-width: 1000px) {
-    .footer {
-        display: grid;
-        grid-template-columns: max-content max-content max-content;
-        grid-template-rows: 1fr max-content max-content;
-        justify-content: center;
-        column-gap: 100px;
-        padding-right: 20px;
-    }
-
-
-    .secCompany {
-        grid-column: 1/2;
-        grid-row: 1/2;
-        padding: 0;
-
-        .logo {
-            .logoLink {
-                width: 100px;
-            }
-        }
-        .address {
-            margin-left: 15px;
-            text-align: left;
-            font-size: 1rem;
-        }
-    }
-    .secNav:nth-of-type(1) {
-        grid-column: 2/3;
-        grid-row: 1/2;
-        .navList {
-            .headerLitem {
-                .header {
-                    font-size: 1.3rem;
-                }
-            }
-        }
-
-        .navLitem {
-            .link {
-                font-size: 1.2rem;
-            }
-        }
-
-    }
-    .secNav:nth-of-type(2) {
-        grid-column: 3/4;
-        grid-row: 1/2;
-        .navList {
-            .headerLitem {
-                .header {
-                    font-size: 1.3rem;
-                }
-            }
-        }
-        .navLitem {
-            .link {
-                font-size: 1.2rem;
-            }
-        }
-
-    }
-
-    .secConnect {
-        grid-column: 1/4;
-        grid-row: 2/3;
-        margin-left: 18px;
-        .connect {
-            .withus {
-                font-size: 1.1rem;
-            }
-
-            .socialLink {
-                width: 30px;
-                height: 30px;
-            }
-        }
-    }
-
-    .secCopyrights {
-        grid-column: 1/4;
-        grid-row: 3/4;
-        padding-left: 18px;
-    }
-}
+/* @media (min-width: 1000px) { */
+/*     .footer { */
+/*         display: grid; */
+/*         grid-template-columns: max-content max-content max-content; */
+/*         grid-template-rows: 1fr max-content max-content; */
+/*         justify-content: center; */
+/*         column-gap: 100px; */
+/*         padding-right: 20px; */
+/*     } */
 
 
-@media (min-width: 1400px) {
-    .footer {
-        column-gap: 200px;
-        .secCompany {
+/*     .secCompany { */
+/*         grid-column: 1/2; */
+/*         grid-row: 1/2; */
+/*         padding: 0; */
 
-            .logo {
-                .logoLink {
-                    width: 120px;
-                }
-            }
-            .address {
-                margin-left: 15px;
-                text-align: left;
-                font-size: 1rem;
-            }
-        }
+/*         .logo { */
+/*             .logoLink { */
+/*                 width: 100px; */
+/*             } */
+/*         } */
+/*         .address { */
+/*             margin-left: 15px; */
+/*             text-align: left; */
+/*             font-size: 1rem; */
+/*         } */
+/*     } */
+/*     .secNav:nth-of-type(1) { */
+/*         grid-column: 2/3; */
+/*         grid-row: 1/2; */
+/*         .navList { */
+/*             .headerLitem { */
+/*                 .header { */
+/*                     font-size: 1.3rem; */
+/*                 } */
+/*             } */
+/*         } */
 
-    }
-}
+/*         .navLitem { */
+/*             .link { */
+/*                 font-size: 1.2rem; */
+/*             } */
+/*         } */
+
+/*     } */
+/*     .secNav:nth-of-type(2) { */
+/*         grid-column: 3/4; */
+/*         grid-row: 1/2; */
+/*         .navList { */
+/*             .headerLitem { */
+/*                 .header { */
+/*                     font-size: 1.3rem; */
+/*                 } */
+/*             } */
+/*         } */
+/*         .navLitem { */
+/*             .link { */
+/*                 font-size: 1.2rem; */
+/*             } */
+/*         } */
+
+/*     } */
+
+/*     .secConnect { */
+/*         grid-column: 1/4; */
+/*         grid-row: 2/3; */
+/*         margin-left: 18px; */
+/*         .connect { */
+/*             .withus { */
+/*                 font-size: 1.1rem; */
+/*             } */
+
+/*             .socialLink { */
+/*                 width: 30px; */
+/*                 height: 30px; */
+/*             } */
+/*         } */
+/*     } */
+
+/*     .secCopyrights { */
+/*         grid-column: 1/4; */
+/*         grid-row: 3/4; */
+/*         padding-left: 18px; */
+/*     } */
+/* } */
+
+
+/* @media (min-width: 1400px) { */
+/*     .footer { */
+/*         column-gap: 200px; */
+/*         .secCompany { */
+
+/*             .logo { */
+/*                 .logoLink { */
+/*                     width: 120px; */
+/*                 } */
+/*             } */
+/*             .address { */
+/*                 margin-left: 15px; */
+/*                 text-align: left; */
+/*                 font-size: 1rem; */
+/*             } */
+/*         } */
+
+/*     } */
+/* } */
