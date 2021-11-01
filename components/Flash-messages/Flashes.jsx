@@ -1,8 +1,6 @@
-// own - utilities
-import {APP_STORE} from "lib/stores";
-const {useAppContext} = APP_STORE;
-import styled from "styled-components";
+import React from "react";
 import Router from "next/router";
+import styled from "styled-components";
 const style = {};
 
 const FlashMessage = styled.div`
@@ -13,7 +11,7 @@ align-items: center;
 justify-content: center;
 min-height: 50px;
 font-size: var(--font-size-large);
-flex: 1;
+flex: 1 1 50px;
 width: 100%;
 background-color: var(--color-primary);
 font-weight: bold;
@@ -25,9 +23,11 @@ border-radius: 10px;
 margin-bottom: 6px;
 };
 
-@media (min-width: 1000px) {
+@media (min-width: 1100px) {
 font-size: vac(--font-size-2large);
+flex: 1 1 80px;
 }
+
 
 &.checkout {
 cursor: pointer;
@@ -44,54 +44,100 @@ color: white;
 }
 `;
 
-
-export const FLASHES = {
-  FRegisterDuplicate: (index, flashMessage) => <AccountDuplicate key={index} {...flashMessage}/>,
-  FRegisterFailure: (index, flashMessage) => <RegisterFailure key={index} {...flashMessage}/>,
-  FLoginNoAccount: (index, flashMessage) => <NoAccount key={index} {...flashMessage}/>,
-  FLoginPassword: (index, flashMessage) => <WrongPassword key={index} {...flashMessage}/>,
-  FRegisterSuccess: (index, flashMessage) => <RegisterSuccess key={index} {...flashMessage}/>,
-  FLoginSuccess: (index, flashMessage) => <LoginSuccess key={index} {...flashMessage}/>,
-  FOutOfStock: (index, flashMessage) => <OutOfStock key={index} {...flashMessage}/>,
-  FCheckout: (index, flashMessage) => <Checkout key={index} {...flashMessage}/>,
-  pager: (index, mount)=> <Mounter key={index} element={mount.element}/>,
+const FLASHES = {
+  FCheckout: (overwriteConfig = {}) => {
+    const config = {timeAlive: 7000, order: 2, ...overwriteConfig};
+    return {
+      config,
+      get: key => <Checkout key={key} {...config}/>
+    };
+  },
+  FOutOfStock: (overwriteConfig = {}) => {
+    const config = {timeAlive: 7000, order: 2, ...overwriteConfig};
+    return {
+      config,
+      get: key => <OutOfStock key={key} {...config}/>
+    };
+  },
+  pager: (overwriteConfig = {}) => {
+    const config = {timeAlive: null, order: 1, ...overwriteConfig};
+    return {
+      config,
+      get: key => (<Mounter key={key} {...config}/>),
+    };
+  },
+  FRegisterDuplicate: (overwriteConfig = {}) => {
+    const config = {timeAlive: 7000, order: 0, ...overwriteConfig};
+    return {
+      config,
+      get: key => <AccountDuplicate key={key} {...config}/>
+    };
+  },
+  FRegisterFailure: (overwriteConfig = {}) => {
+    const config = {timeAlive: 7000, order: 0, ...overwriteConfig};
+    return {
+      get: key => <RegisterFailure key={key} {...config}/>
+    };
+  },
+  FLoginNoAccount: (overwriteConfig = {}) => {
+    const config = {timeAlive: 7000, order: 0, ...overwriteConfig};
+    return {
+      config,
+      get: key => <NoAccount key={key} {...config}/>
+    };
+  },
+  FLoginPassword: (overwriteConfig = {}) => {
+    const config = {timeAlive: 7000, order: 0, ...overwriteConfig};
+    return {
+      config,
+      get: key => <WrongPassword key={key} {...config}/>
+    };
+  },
+  FRegisterSuccess: (overwriteConfig = {}) => {
+    const config = {timeAlive: 7000, order: 0, ...overwriteConfig};
+    return {
+      config,
+      get: key => <RegisterSuccess key={key} {...config}/>
+    };
+  },
+  FLoginSuccess: (overwriteConfig = {}) => {
+    const config = {timeAlive: 7000, order: 1, ...overwriteConfig};
+    return {
+      config,
+      get: key => <LoginSuccess key={key} {...config}/>
+    };
+  },
 };
 
 const
-Mounter = ({element}) => {
-  return element;
+Mounter = ({el}) => {
+  return React.isValidElement(el) ? el : null;
 },
-useTimeout = (flashId, timeAlive) => {
-  const {setApp} = useAppContext();
-  setTimeout(() => setApp("removeFlash", flashId), timeAlive);
-},
-OutOfStock = ({flashId}) => {
-  const config = {timeAlive: 7000}; // 7 seconds
-  useTimeout(flashId, config.timeAlive);
+OutOfStock = () => {
   return (
-    <FlashMessage id={flashId} className="outofstock">
+    <FlashMessage className="outofstock">
       Out of stock!
     </FlashMessage>
   );
 },
-Checkout = ({flashId}) => {
-  const config = {timeAlive: 7000}; // 7 seconds
-  useTimeout(flashId, config.timeAlive);
+Checkout = () => {
   function checkout() {
-    Router.push("/checkout");
+    // nextjs
+    if (Router) {
+      return Router.push("/checkout");
+    }
+    return "";
   }
+  if (/checkout/.test(window.location)) return null;
   return (
-    <FlashMessage id={flashId} className="checkout" onClick={checkout}>
+    <FlashMessage className="checkout" onClick={checkout}>
       <p>checkout!</p>
     </FlashMessage>
   );
 },
-AccountDuplicate = ({flashId}) => {
-  const config = {timeAlive: 7000}; // 7 seconds
-  useTimeout(flashId, config.timeAlive);
-
+AccountDuplicate = () => {
   return (
-    <article id={flashId} className={style.flashContainer}>
+    <article className={style.flashContainer}>
       <div className={style.imgContainer}>
         <img
           src="/beingUsed/user.png"
@@ -104,12 +150,9 @@ AccountDuplicate = ({flashId}) => {
     </article>
   );
 },
-NoAccount = ({flashId}) => {
-  const config = {timeAlive: 7000}; // 7 seconds
-  useTimeout(flashId, config.timeAlive);
-
+NoAccount = () => {
   return (
-    <article className={style.flashContainer} id={flashId}>
+    <article className={style.flashContainer}>
       <div className={style.imgContainer}>
         <img
           src="/beingUsed/user.png"
@@ -123,12 +166,9 @@ NoAccount = ({flashId}) => {
   );
 },
 
-RegisterFailure = ({flashId}) => {
-  const config = {timeAlive: 7000}; // 7 seconds
-  useTimeout(flashId, config.timeAlive);
-
+RegisterFailure = () => {
   return (
-    <article className={style.flashContainer} id={flashId}>
+    <article className={style.flashContainer}>
       <div className={style.imgContainer}>
         <img
           src="/beingUsed/user.png"
@@ -141,12 +181,9 @@ RegisterFailure = ({flashId}) => {
     </article>
   );
 },
-WrongPassword = ({flashId}) => {
-  const config = {timeAlive: 7000}; // 7 seconds
-  useTimeout(flashId, config.timeAlive);
-
+WrongPassword = () => {
   return (
-    <article className={style.flashContainer} id={flashId}>
+    <article className={style.flashContainer}>
       <div className={style.imgContainer}>
         <img
           src="/beingUsed/user.png"
@@ -159,12 +196,9 @@ WrongPassword = ({flashId}) => {
     </article>
   );
 },
-RegisterSuccess = ({flashId}) => {
-  const config = {timeAlive: 7000}; // 7 seconds
-  useTimeout(flashId, config.timeAlive);
-
+RegisterSuccess = () => {
   return (
-    <article className={style.flashContainer} id={flashId}>
+    <article className={style.flashContainer}>
       <div className={style.imgContainer}>
         <img
           src="/beingUsed/user_success.png"
@@ -177,12 +211,9 @@ RegisterSuccess = ({flashId}) => {
     </article>
   );
 },
-LoginSuccess = ({flashId}) => {
-  const config = {timeAlive: 7000}; // 7 seconds
-  useTimeout(flashId, config.timeAlive);
-
+LoginSuccess = () => {
   return (
-    <article className={style.flashContainer} id={flashId}>
+    <article className={style.flashContainer}>
       <div className={style.imgContainer}>
         <img
           src="/beingUsed/user_success.png"
@@ -195,3 +226,6 @@ LoginSuccess = ({flashId}) => {
     </article>
   );
 };
+
+
+export default FLASHES;

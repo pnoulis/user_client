@@ -1,0 +1,59 @@
+@use "styles/colors";
+.dropdown {
+    list-style-type: none;
+    z-index: 9;
+    margin-left: 20px;
+    padding-top: 30px;
+
+    display: none;
+    &:hover {
+        display: block;
+    }
+
+}
+
+.dropdown.show {
+    display: block;
+}
+
+
+.item:not(:last-child) {
+    margin-bottom: 20px;
+}
+.link {
+    display: block;
+    padding: 10px 0 10px 15px;
+    border-left: 2px solid black;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    font-size: 1.1rem;
+    color: white;
+
+    &:hover {
+        color: colors.$blue-darkNavy-b90-1;
+        background-color: colors.$yellow-light-honey-1;
+        border-radius: 5px;
+        border-left-color: colors.$yellow-light-honey-1;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    &:active {
+        color: colors.$blue-darkNavy-b90-1;
+        background-color: colors.$green-phos-1;
+        border-left-color: colors.$green-phos-1;
+        font-weight: bold;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+
+    @media (min-width: 1000px) {
+        font-size: 1.2rem;
+    }
+
+    @media (min-width: 1400px) {
+        font-size: 1.3rem;
+    }
+
+}

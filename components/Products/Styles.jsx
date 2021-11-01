@@ -12,7 +12,7 @@ grid-auto-rows: max-content;
 min-width: 100%;
 min-height: 100%;
 gap: 50px 50px; // row column
-padding: 50px 20px 50px 20px;
+padding: 50px 20px 100px 20px;
 font-size: var(--font-root-regular);
 justify-content: center;
 
@@ -25,17 +25,14 @@ grid-template-columns: repeat(3, minmax(280px, 380px));
 }
 
 `,
-Sidebar = styled.aside`
-position: absolute;
-height: 100%;
-max-height: 100vh;
-display: flex;
-background-color: pink;
-`,
 LoadingScreen = styled.div`
-min-width: 100%;
-min-height: 100%;
-display: flex;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 290;
+min-width: 100vw;
+min-height: 100vh;
+display: ${props => props.loading ? "flex" : "none"};
 justify-content: center;
 align-items: center;
 `,

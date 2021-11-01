@@ -1,0 +1,102 @@
+.container:not(:last-child) {
+    border-bottom: 2px solid var(--color-moss);
+}
+.container {
+    display: flex;
+    flex-flow: row nowrap;
+    height: auto;
+    padding: 10px;
+    cursor: pointer;
+
+    .header {
+        padding-top: 6px;
+        margin-left: 15px;
+        text-transform: capitalize;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+
+        @media (min-width: 600px) {
+            margin-left: 30px;
+        }
+        @media (min-width: 1000px) {
+            font-size: 1.2rem;
+        }
+    }
+
+    .activeAdrHeader {
+        margin-left: 15px;
+
+        @media (min-width: 600px) {
+            margin-left: 30px;
+        }
+        p:nth-of-type(1) {
+            display: flex;
+            flex-flow: row wrap;
+
+            .street {
+                margin-right: 15px;
+                font-size: 0.9rem;
+                @media (min-width: 600px) {
+                    font-size: 1rem;
+                    letter-spacing: 1px;
+                }
+
+                @media (min-width: 1000px) {
+                    font-size: 1.1rem;
+                }
+            }
+            .postcode {
+                font-weight: bold;
+            }
+        }
+
+        p:nth-of-type(2) {
+            margin-top: 5px;
+            display: flex;
+            flex-flow: row wrap;
+            .email {
+                font-size: 0.9rem;
+                margin-right: 15px;
+
+                @media (min-width: 600px) {
+                    font-size: 1rem;
+                    letter-spacing: 1px;
+                }
+                @media (min-width: 1000px) {
+                    font-size: 1.1rem;
+                }
+            }
+            .mobile {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.container.selected {
+    height: auto;
+    cursor: initial;
+
+}
+
+
+.oldAddressesContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+
+    .oldAddress {
+        margin-top: 20px;
+    }
+}
+.oldAddress {
+    border: 3px solid white;
+    border-radius: 6px;
+    padding: 30px 5px 5px 5px;
+    width: 100%;
+    max-width: 680px;
+    margin: auto;
+    position: relative;
+    cursor: pointer;
+}
+

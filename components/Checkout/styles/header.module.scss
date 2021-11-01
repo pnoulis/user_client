@@ -1,0 +1,138 @@
+.header {
+    background-color: var(--color-honey);
+    padding: 20px 5px 10px 5px;
+    height: 100%;
+    width: 100%;
+    @media (min-width: 1000px) {
+        width: max-content;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        padding: 50px 20px 0 20px;
+    }
+}
+
+.nav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: auto;
+
+    @media (min-width: 1000px) {
+        flex-flow: column nowrap;
+        margin: 0;
+        width: max-content;
+        flex: 1;
+        max-height: 700px;
+    }
+}
+
+.logo {
+    border: none;
+    outline: none;
+    width: 60px;
+    img {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (min-width: 400px) {
+        width: 90px;
+    }
+
+    @media (min-width: 600px) {
+        width: 100px;
+    }
+    @media (min-width: 1000px) {
+        width: 110px;
+    }
+
+    @media (min-width: 1400px) {
+        width: 130px;
+    }
+}
+
+.link {
+    display: flex;
+    outline: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid white;
+    width: 60px; // old 75px;
+    height: 65px; // old 80px;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: var(--color-secondary);
+        border-color: var(--color-secondary);
+        color: white;
+    }
+
+    &:active {
+        background-color: var(--color-success);
+        border-color: var(--color-success);
+        color: black;
+    }
+
+    @media (min-width: 400px) {
+        width: 90px;
+    }
+
+    @media (min-width: 600px) {
+        width: 100px;
+        height: 90px;
+    }
+    @media (min-width: 1000px) {
+        width: 110px;
+        height: 100px;
+    }
+
+    @media (min-width: 1400px) {
+        width: 135px;
+        height: 125px;
+    }
+}
+
+.linkImg {
+    margin-bottom: 7px;
+    img {
+        display: inline-block;
+        width: 20px; // old 25px;
+        height: 20px; // old 25px;
+
+        @media (min-width: 1000px) {
+            width: 45px;
+            height: 45px;
+        }
+
+        @media (min-width: 1400px) {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+}
+
+.linkText {
+    text-transform: capitalize;
+    font-size: 0.8rem; // old 1rem;
+
+    @media (min-width: 400px) {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    @media (min-width: 1000px) {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+
+    @media (min-width: 1400px) {
+        font-size: 1.3rem;
+    }
+}
+

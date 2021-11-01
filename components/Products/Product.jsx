@@ -21,6 +21,11 @@ gap: 10px 0;
 box-shadow: 0px 0px 0.5px 3px var(--color-honey);
 }
 
+@media (max-height: 800px) {
+margin: auto;
+height: 400px;
+width: 270px;
+}
 `,
 ImageArea = styled.div`
 // layout - dimensions
@@ -33,6 +38,14 @@ display: inline-block;
 width: 100%;
 height: 100%;
 }
+
+@media (max-height: 800px) {
+img {
+display: inline-block;
+width: 270px;
+}
+}
+
 `,
 ContentArea = styled.div`
 // layout -dimensions
@@ -50,7 +63,7 @@ gap: 20px 15px;
 `,
 BuyArea = styled.p`
 // layout - dimensions
-flex: 0 70px;
+flex: 0 50px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -77,6 +90,9 @@ font-size: var(--font-size-3large);
 opacity: 0.7;
 }
 
+@media (min-width: 800px) {
+flex: 0 70px;
+}
 `,
 Price = styled.p`
 // fonts
@@ -97,11 +113,14 @@ color: var(--color-font);
 Description = styled.p`
 // fonts
 display: inline;
-overflow-wrap: anywhere;
 font-size: var(--font-size-large);
 color: var(--color-font);
 letter-spacing: 0.5px;
 text-transform: lowercase;
+
+@media (min-width: 400px) {
+overflow-wrap: anywhere;
+}
 `;
 
 

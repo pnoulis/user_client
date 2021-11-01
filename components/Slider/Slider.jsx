@@ -21,7 +21,7 @@ LEVEL_COLORS = [
 
 const
 SliderWrapper = styled.aside`
-border: 3px solid var(--color-honey);
+border: 2px solid var(--color-honey);
 background-color: var(--color-background-grey);
 border-top-right-radius: 8px;
 border-bottom-right-radius: 8px;

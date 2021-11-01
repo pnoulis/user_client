@@ -1,22 +1,26 @@
 import styled from "styled-components";
+import Router from "next/router";
 
 const
 Pages = styled.div`
 display: flex;
 flex-flow: row nowrap;
-height: max-content;
-width: max-content;
-margin-left: auto;
-margin-right: auto;
-margin-bottom: 20px;
+width: 100%;
+height: 28px;
 justify-content: center;
 align-items: center;
+background-color: var(--color-secondary);
+margin-bottom: 6px;
+border-radius: 10px;
+
+@media (min-width: 1100px) {
+height: 60px;
+}
 `,
 PageTurner = styled.p`
-flex: 1;
 box-sizing: content-box;
-padding: 10px 30px;
-width: 40px;
+padding: 5px 20px;
+width: 25px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -28,11 +32,17 @@ width: 100%;
 height: 100%;
 transform: ${props => props.left && "rotate(180deg)"};
 }
+
+@media (min-width: 1100px) {
+width: 35px;
+}
 `,
 Page = styled.span`
 box-sizing: content-box;
-width: 40px;
-height: 40px;
+// width: 40px;
+// height: 40px;
+width: 20px;
+height: 20px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -51,13 +61,23 @@ margin-left: 4px;
 &:last-of-type {
 margin-right: 4px;
 }
+
+@media (min-width: 1100px) {
+width: 30px;
+height: 30px;
+}
 `;
 
-function Pager({pages, handleNextPage}) {
-
+function Pager({pages, category}) {
+  function handlePageTurn(next) {
+    let nextPage = pages.findIndex(pg => !!pg);
+    nextPage += next ? 1 : -1;
+    if (nextPage > pages.length - 1 || nextPage < 0) return null;
+    Router.push(`/products/${category}/${nextPage + 1}`);
+  };
   return (
     <Pages>
-      <PageTurner left>
+      <PageTurner left onClick={() => handlePageTurn(false)}>
         <img src="/right-arrow-angle.png" alt="left-arrow"/>
       </PageTurner>
       {pages.map((page, i) => {
@@ -65,11 +85,10 @@ function Pager({pages, handleNextPage}) {
           <Page key={i} selected={page}>{i + 1}</Page>
         );
       })}
-      <PageTurner>
+      <PageTurner onClick={() => handlePageTurn(true)}>
         <img src="/right-arrow-angle.png" alt="right-arrow"/>
       </PageTurner>
     </Pages>
-
   );
 }
 export default Pager;

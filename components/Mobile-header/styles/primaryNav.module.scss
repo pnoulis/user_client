@@ -1,0 +1,65 @@
+@use "styles/colors";
+.nav {
+    list-style-type: none;
+}
+
+
+
+.navItem:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+.navItem {position: relative; z-index: 13;}
+.navLink {
+    position: relative !important;
+    display: block;
+    cursor: pointer;
+    outline: none;
+    padding: 10px 0 10px 15px;
+    border-left: 2px solid black;
+    letter-spacing: 1.5px;
+    font-size: 1.1rem;
+    color: white;
+    z-index: 13;
+
+    &:hover ~ ul {
+        display: block;
+    }
+
+    &:hover {
+        background-color: white;
+        color: colors.$blue-darkNavy-b90-1;
+        border-left-color: white;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+
+    &:active {
+        background-color: colors.$yellow-honey-1;
+        border-left-color: colors.$yellow-honey-1;
+        font-weight: bold;
+        color: black;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+
+    @media (min-width: 1000px) {
+        font-size: 1.2rem;
+    }
+
+    @media (min-width: 1400px) {
+        font-size: 1.3rem;
+    }
+
+}
+
+
+.show {
+    background-color: white;
+    color: colors.$blue-darkNavy-b90-1;
+    border-left-color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}

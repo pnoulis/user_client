@@ -1,0 +1,35 @@
+.reviewButton {
+    padding: 20px 40px 20px 50px;
+    background-color: var(--color-secondary);
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    &:hover {
+        background-color: var(--color-secondary);
+    }
+
+    &:active {
+        background-color: var(--color-secondary);
+        color: white;
+    }
+    span {
+        margin-right: 10px;
+    }
+
+    img {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+    }
+
+    @media (min-width: 1000px) {
+        font-size: 1.2rem;
+    }
+}
