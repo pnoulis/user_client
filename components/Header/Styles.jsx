@@ -8,7 +8,7 @@ Header = styled.header`
 position: ${props => props.position};
 position: sticky;
 top: 0;
-z-index: 100;
+z-index: 300;
 
 // content - size
 display: grid;

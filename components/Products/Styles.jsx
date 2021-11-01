@@ -26,9 +26,13 @@ grid-template-columns: repeat(3, minmax(280px, 380px));
 
 `,
 LoadingScreen = styled.div`
-min-width: 100%;
-min-height: 100%;
-display: flex;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 290;
+min-width: 100vw;
+min-height: 100vh;
+display: ${props => props.loading ? "flex" : "none"};
 justify-content: center;
 align-items: center;
 `,

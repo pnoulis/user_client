@@ -1,4 +1,5 @@
 import React from "react";
+import Router from "next/router";
 import styled from "styled-components";
 const style = {};
 
@@ -121,8 +122,13 @@ OutOfStock = () => {
 },
 Checkout = () => {
   function checkout() {
-    // Router.push("/checkout");
+    // nextjs
+    if (Router) {
+      return Router.push("/checkout");
+    }
+    return "";
   }
+  if (/checkout/.test(window.location)) return null;
   return (
     <FlashMessage className="checkout" onClick={checkout}>
       <p>checkout!</p>

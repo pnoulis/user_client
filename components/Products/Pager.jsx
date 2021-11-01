@@ -6,7 +6,7 @@ Pages = styled.div`
 display: flex;
 flex-flow: row nowrap;
 width: 100%;
-min-height: 40px;
+height: 28px;
 justify-content: center;
 align-items: center;
 background-color: var(--color-secondary);
@@ -41,8 +41,8 @@ Page = styled.span`
 box-sizing: content-box;
 // width: 40px;
 // height: 40px;
-width: 30px;
-height: 30px;
+width: 20px;
+height: 20px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -60,6 +60,11 @@ margin-left: 4px;
 }
 &:last-of-type {
 margin-right: 4px;
+}
+
+@media (min-width: 1100px) {
+width: 30px;
+height: 30px;
 }
 `;
 

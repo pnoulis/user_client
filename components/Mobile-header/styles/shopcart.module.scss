@@ -1,0 +1,43 @@
+.shopCart {
+    width: min-content;
+    a {
+        box-sizing: content-box;
+        padding: 8px 15px;
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        position: relative;
+        z-index: 9;
+        margin-right: 25px;
+        img {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+        span {
+            box-sizing: content-box;
+            position: absolute;
+            border-radius: 50%;
+            text-align: center;
+            background-color: red;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+            z-index: 10;
+            outline: none;
+            padding: 1px 3px 1px 1px;
+            border: none;
+        }
+
+        &:hover {
+            background-color: white;
+        }
+
+        @media (min-width: 600px) {
+            width: 40px;
+            height: 40px;
+        }
+    }
+}

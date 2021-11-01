@@ -1,0 +1,72 @@
+.address {
+    margin: auto;
+    max-width: 350px;
+    margin-top: 15px;
+    fieldset {
+        display: flex;
+        flex-flow: row wrap;
+        border: none;
+        outline: none;
+
+        div:nth-child(n) {
+            input {
+                border-color: white;
+            }
+
+            select {
+                border-color: white;
+            }
+            p {
+                border-color: white;
+            }
+        }
+
+        div:nth-of-type(10) {
+            margin: auto;
+            @media (min-width: 350px) {
+                margin: 0 auto 10px 0;
+            }
+        }
+        div:nth-of-type(11) {
+            margin: 10px auto 10px auto;
+
+            @media (min-width: 350px) {
+                margin: 0 0 10px 0;
+            }
+        }
+
+        .toggle {
+            font-weight: bold;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.8;
+            }
+            .done {
+                height: 55px;
+                width: 130px;
+                border-radius: 6px;
+                background-color: var(--color-success);
+                border: 2px solid black;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .cancel {
+                height: 55px;
+                width: 130px;
+                border-radius: 6px;
+                background-color: var(--color-error);
+                border: 2px solid black;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+        }
+    }
+}

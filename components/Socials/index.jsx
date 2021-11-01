@@ -3,19 +3,14 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useResources } from "lib/resources";
 
-const data = {
-  facebook: {
-    link: "/",
-    img: "/socials/facebook-filled.svg"
-  },
-  instagram: {
-    link: "/",
-    img: "/socials/instagram-filled.svg",
-  },
-  google: {
-    link: "",
-    img: "",
-  },
+const icons = {
+  facebook: [
+    "/socials/facebook-filled.svg",
+  ],
+  instagram: [
+    "/socials/instagram-filled.svg",
+  ],
+  google: [],
 };
 const SocialsLayout = styled.div`
 width: 100%;
@@ -93,24 +88,42 @@ function Instagram({link, img}) {
   );
 }
 
-export default function Socials({orientation, size}) {
-  const footer = useResources("footer");
-  console.log(footer);
-  return (
-    <SocialsLayout vertical={orientation === "vertical" && "vertical"}
+const
+Pages_v1 = ({orientation, size}) => {
+  const { socials } = useResources("socials");
+  return !socials ? null : (
+    <SocialsLayout vertical={orientation}
                    size={size}>
       <Facebook
-        link={data.facebook.link}
-        img={data.facebook.img}
+        link={socials.facebook.page}
+        img={icons.facebook[0]}
       />
       <Instagram
-        link={data.instagram.link}
-        img={data.instagram.img}
+        link={socials.instagram.page}
+        img={icons.instagram[0]}
       />
       <Google
-        link={data.google.link}
-        img={data.google.img}
+        link={socials.google.page}
+        img={icons.google[0]}
       />
     </SocialsLayout>
   );
+};
+
+const
+socials = {
+  auth: {
+  },
+  pages: [
+    Pages_v1,
+  ]
+};
+
+export default function getSocials(type, version) {
+  try {
+    --version;
+    return socials[type][version];
+  } catch (err) {
+    throw Error("no such type or version");
+  }
 }

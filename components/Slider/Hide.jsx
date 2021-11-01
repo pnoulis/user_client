@@ -5,8 +5,8 @@ const S = {};
 S.Toggle = styled.div`
 position: relative;
 height: 100%;
-width: ${props => props.toggled ? "0px" : "303px"};
-max-height: 1200px;
+width: ${props => props.toggled ? "-0px" : "290px"};
+max-height: 1000px;
 transition: transform 2s, width 2s;
 z-index: 200;
 

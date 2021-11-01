@@ -38,8 +38,12 @@ proxy should be directing actions to their proper dispatcher
 CLOSED: [2021-10-30 Sat 12:44]
 ** DONE backend now has dedicated route for servicing requests to non-user resources
 CLOSED: [2021-10-30 Sat 00:39]
+* DONE mobile footer logo and branch are too far apart
+CLOSED: [2021-10-31 Sun 11:01]
+* DOING on desktop products pager and footer should have a greater distance between them
 * TODO implement product filters and sorting function delivery system
-* TODO implement footer
+* DONE implement footer
+CLOSED: [2021-10-31 Sun 11:03]
 * TODO implement shopping card page
 * TODO implement address
 * TODO implement user account

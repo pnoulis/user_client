@@ -48,10 +48,10 @@ export default function Header() {
           <img src="/logo/google_logo.png" alt="company-logo"/>
         </S.LogoWrapper>
       </Link>
-      <Link href="/cart">
-        <S.CartWrapper {...sticky} cart={app.cart.meta.total}>
+      <Link href="/checkout">
+        <S.CartWrapper {...sticky} cart={app.cart.meta.amount}>
           <img src="/shopCart/shopping-cart-128px.png" alt="cart-icon"/>
-          <span><span className="cartHolder">{app.cart.meta.total}</span></span>
+          <span><span className="cartHolder">{app.cart.meta.amount}</span></span>
         </S.CartWrapper>
       </Link>
       <Link href="/mobile">
@@ -74,7 +74,7 @@ export default function Header() {
         </Link>
       </S.SocialsWrapper>
       <Navigation primNav={nav.primary}/>
-      {app.loggedIn ? <LoggedIn userNav={nav.user}/> : <Login/>}
+      {app.loggedIn ? <Account userNav={nav.user}/> : <Login/>}
     </S.Header>
   );
 }

@@ -19,7 +19,7 @@ function Login() {
 
   function handleLogin(e) {
     e.preventDefault();
-    if (status) return null;
+    if (status()) return null;
     if (Object.values(form.fieldErrors).some(err => !!err)) return null;
     if (Object.values(form.fields).some(field => !field)) return null;
     setReq({method: "post", url: "/login", payload: form.fields});
@@ -33,7 +33,7 @@ function Login() {
 
 
     if (res.ok) {
-      setApp("setSession", payload);
+      setApp("login", payload);
       setTimeout(() => setApp("addFlash", {flashId: "FLoginSuccess"}), 3000);
 
       if (location.pathname === "/checkout/login") {
@@ -51,7 +51,7 @@ function Login() {
           <TextField type="email" name="email" required/>
           <TextField type="password" name="password" required/>
           <input className={style.submitButton} type="submit" value="Login"/>
-          <div style={{marginTop: "20px"}}>{renderStatus(status)}</div>
+          <div style={{marginTop: "20px"}}>{renderStatus(status())}</div>
         </fieldset>
       </form>
     </FORM_STORE.formContext.Provider>

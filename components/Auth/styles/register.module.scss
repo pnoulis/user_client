@@ -28,8 +28,15 @@
 .registerDashboard {
     max-width: 500px;
     width: 100%;
+    height: max-content;
+    margin: auto;
+    padding: 100px 0;
 
     div:nth-child(1) {
         margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+        padding: 50px 5px;
     }
 }

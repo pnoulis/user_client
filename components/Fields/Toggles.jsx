@@ -37,10 +37,10 @@ export function Cancel({children, style = {}}) {
 
   return (
     <div
-      className={style.cancel || ""}
+      className={style.toggle || style.cancel || ""}
       {...bindHover}
       onClick={() => setForm("toggle", "cancel")}>
-      <p>
+      <p className={style.cancel || ""}>
         {children || "cancel"}
       </p>
     </div>
@@ -86,10 +86,10 @@ export function Done({children, style = {}}) {
 
   return (
     <div
-      className={style.done || ""}
+      className={style.toggle || style.done || ""}
       {...bindHover}
       onClick={() => setForm("toggle", "done")}>
-      <p>
+      <p className={style.done || ""}>
         {children || "done"}
       </p>
     </div>

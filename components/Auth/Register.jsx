@@ -19,7 +19,7 @@ function Register() {
 
   function handleLogin(e) {
     e.preventDefault();
-    if (status) return null;
+    if (status()) return null;
     if (Object.values(form.fieldErrors).some(err => !!err)) return null;
     if (Object.values(form.fields).some(field => !field)) return null;
     setReq({method: "post", url: "/register", payload: form.fields});
@@ -29,6 +29,7 @@ function Register() {
     if (!res) return null;
     const payload = res.payload;
     if (payload.fieldErrors) setForm("setErrors", payload.fieldErrors);
+    console.log(payload);
     if (!res.ok && payload.flashMessage) return setApp("addFlash", {flashId: payload.flashMessage});
 
     if (res.ok) {
@@ -48,7 +49,7 @@ function Register() {
           <TextField type="password" name="password" required/>
           <TextField type="password" name="confirmPassword" required/>
           <input className={style.submitButton} type="submit" value="Login"/>
-          <div style={{marginTop: "20px"}}>{renderStatus(status)}</div>
+          <div style={{marginTop: "20px"}}>{renderStatus(status())}</div>
         </fieldset>
       </form>
     </FORM_STORE.formContext.Provider>
