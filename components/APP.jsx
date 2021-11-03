@@ -4,7 +4,7 @@ import {APP_STORE} from "lib/stores";
 import {backend, time} from "lib/utils";
 import ListFlashMessages from "components/Flash-messages";
 import styled from "styled-components";
-import Header from "components/Header";
+// import Header from "components/Header";
 import Footer from "components/Footer";
 
 const
@@ -28,7 +28,7 @@ const
 StandardLayout = ({children}) => {
   return (
     <Root>
-      <Header/>
+      {/* <Header/> */}
       <Main id="main-content">
         {children}
         <ListFlashMessages container="main-content"/>
