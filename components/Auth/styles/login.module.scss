@@ -32,7 +32,7 @@
     width: 100%;
     height: max-content;
     margin: auto;
-    padding: 100px 0px;
+    padding: 20px 0px;
 
     div:nth-child(1) {
         margin-bottom: 20px;
@@ -40,6 +40,6 @@
 
     @media (max-width: 600px) {
         width: 95%;
-        padding: 50px 5px;
+        padding: 30px 5px;
     }
 }

@@ -13,7 +13,7 @@ min-height: 50px;
 font-size: var(--font-size-large);
 flex: 1 1 50px;
 width: 100%;
-background-color: var(--color-primary);
+background-color: var(--color-honey);
 font-weight: bold;
 letter-spacing: 1px;
 color: var(--color-font);
@@ -41,6 +41,46 @@ color: white;
 &.outofstock {
 background-color: var(--color-error);
 color: white;
+}
+
+&.login {
+background-color: var(--color-honey);
+color: white;
+.imgContainer {
+width: 30px;
+margin-right: 30px;
+img {
+display: inline-block;
+width: 100%;
+height: 100%;
+}
+}
+
+@media (min-width: 1000px) {
+.imgContainer {
+width: 50px;
+}}
+}
+
+
+&.loginF {
+background-color: var(--color-error);
+color: white;
+.imgContainer {
+width: 30px;
+margin-right: 30px;
+img {
+display: inline-block;
+width: 100%;
+height: 100%;
+}
+}
+
+@media (min-width: 1000px) {
+.imgContainer {
+width: 50px;
+}
+}
 }
 `;
 
@@ -137,93 +177,93 @@ Checkout = () => {
 },
 AccountDuplicate = () => {
   return (
-    <article className={style.flashContainer}>
-      <div className={style.imgContainer}>
+    <FlashMessage className="loginF">
+      <div className="imgContainer">
         <img
-          src="/beingUsed/user.png"
+          src="/user_failure.png"
           alt="small-user-icon"
         />
       </div>
-      <p className={style.message}>
+      <p className="message">
         An account has already been registered with that email!
       </p>
-    </article>
+    </FlashMessage>
   );
 },
 NoAccount = () => {
   return (
-    <article className={style.flashContainer}>
-      <div className={style.imgContainer}>
+    <FlashMessage>
+      <div className="loginF">
         <img
-          src="/beingUsed/user.png"
+          src="/user_failure.png"
           alt="small-user-icon"
         />
       </div>
-      <p className={style.message}>
+      <p className="message">
         No Account registered with that email!
       </p>
-    </article>
+    </FlashMessage>
   );
 },
 
 RegisterFailure = () => {
   return (
-    <article className={style.flashContainer}>
-      <div className={style.imgContainer}>
+    <FlashMessage>
+      <div className="imgContainer">
         <img
-          src="/beingUsed/user.png"
+          src="/user_failure.png"
           alt="small-user-icon"
         />
       </div>
-      <p className={style.message}>
+      <p className="message">
         Failed to register
       </p>
-    </article>
+    </FlashMessage>
   );
 },
 WrongPassword = () => {
   return (
-    <article className={style.flashContainer}>
-      <div className={style.imgContainer}>
+    <FlashMessage className="loginF">
+      <div className="imgContainer">
         <img
-          src="/beingUsed/user.png"
+          src="/user_failure.png"
           alt="smalls-user-icon"
         />
       </div>
-      <p className={style.message}>
+      <p className="message">
         Passwords do not match!
       </p>
-    </article>
+    </FlashMessage>
   );
 },
 RegisterSuccess = () => {
   return (
-    <article className={style.flashContainer}>
-      <div className={style.imgContainer}>
+    <FlashMessage className="login">
+      <div className="imgContainer">
         <img
           src="/beingUsed/user_success.png"
           alt="small-user-icon"
         />
       </div>
-      <p className={style.message}>
+      <p className="message">
         Yay!! &ensp; Successfull registration.
       </p>
-    </article>
+    </FlashMessage>
   );
 },
 LoginSuccess = () => {
   return (
-    <article className={style.flashContainer}>
-      <div className={style.imgContainer}>
+    <FlashMessage className="login">
+      <div className="imgContainer">
         <img
-          src="/beingUsed/user_success.png"
+          src="/user_success.png"
           alt="small-user-icon"
         />
       </div>
-      <p className={style.message}>
+      <p className="message">
         Welcome, &ensp; user &ensp;!
       </p>
-    </article>
+    </FlashMessage>
   );
 };
 

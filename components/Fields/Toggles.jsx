@@ -51,9 +51,9 @@ export function Edit({children, style = {}}) {
   const {setForm} = useFormContext();
   return (
     <div
-      className={style.edit || ""}
+      className={style.toggle || style.edit || ""}
       onClick={() => setForm("toggle", "edit")}>
-      <p>
+      <p className={style.edit || ""}>
         {
           children ||
             <img src="/edit.png" alt="pencil-icon"/>
@@ -67,9 +67,9 @@ export function Delete({children, style = {}}) {
   const {setForm} = useFormContext();
   return (
     <div
-      className={style.delete || ""}
+      className={style.toggle || style.delete || ""}
       onClick={() => setForm("toggle", "delete")}>
-      <p>
+      <p className={style.delete || ""}>
         {
           children ||
             <img src="/delete.png" alt="garbage-bin-icon"/>

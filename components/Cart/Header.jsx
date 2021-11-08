@@ -28,6 +28,7 @@ CheckoutButton = styled.a`
 display: inline-block;
 width: max-content;
 padding: 5px 7px;
+cursor: pointer;
 outline: none;
 border: none;
 font-weight: bold;

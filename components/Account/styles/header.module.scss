@@ -3,12 +3,20 @@
     padding: 20px 5px 10px 5px;
     height: 100%;
     width: 100%;
+    margin-bottom: 50px;
+    height: min-content;
+
+    @media (min-width: 700px) {
+        margin-bottom: 100px;
+    }
     @media (min-width: 1000px) {
         width: max-content;
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-start;
         padding: 50px 20px 30px 20px;
+        margin-bottom: 0;
+        height: 100%;
     }
 }
 
@@ -62,8 +70,8 @@
     justify-content: center;
     align-items: center;
     border: 3px solid white;
-    width: 60px; // old 75px;
-    height: 65px; // old 80px;
+    width: 75px; // old 75px;
+    height: 80px; // old 80px;
     border-radius: 10px;
 
     &:hover {
@@ -79,16 +87,16 @@
     }
 
     @media (min-width: 400px) {
-        width: 90px;
+        width: 100px;
     }
 
     @media (min-width: 600px) {
-        width: 100px;
-        height: 90px;
+        width: 110x;
+        height: 100px;
     }
     @media (min-width: 1000px) {
-        width: 110px;
-        height: 100px;
+        width: 120px;
+        height: 110px;
     }
 
     @media (min-width: 1400px) {

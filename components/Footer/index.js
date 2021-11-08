@@ -10,7 +10,10 @@ import style from "./styles/footer.module.scss";
 const Socials = getSocials("pages", 1);
 export default function Footer() {
   const { footer } = useResources("footer");
-  return !footer ? null : (
+
+  if (!footer || !footer.branch || !footer.email || !footer.logo || !footer.socials) return null;
+
+  return (
   <footer className={style.footer}>
       <div className={style.secNav}>
         <ul className={style.navList}>

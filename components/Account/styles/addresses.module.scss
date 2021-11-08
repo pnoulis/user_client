@@ -1,0 +1,19 @@
+.addressesPage {
+    height: 100%;
+
+    @media (min-width: 1000px) {
+        display: flex;
+        flex-flow: row nowrap;
+        min-height: 700px;
+    }
+
+   .addressesContainer {
+       flex: 1;
+       margin: 30px 0 70px 0;
+
+       @media (min-width: 1000px) {
+           margin: 200px 0 70px 0;
+       }
+
+    }
+}

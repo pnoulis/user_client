@@ -3,40 +3,22 @@ import styled from "styled-components";
 export
 const
 Header = styled.header`
-// position
-position: ${props => props.position};
-position: sticky;
-top: 0;
-z-index: 300;
-
-// content - size
-display: grid;
-grid-template-columns: 1fr 1fr min-content;
-grid-template-rows: ${props => props.reduce ? "1fr" : "1fr 1fr"};
-padding: 0px 15px 0 15px;
-// fonts
-font-size: var(--font-root-regular);
-// color
 background-color: var(--color-secondary);
-
-// desktop header
-@media (min-width: 1100px) {
-grid-template-columns: 1fr 3fr min-content min-content;
-padding: 5px 15px 5px 0;
-grid-gap: 10px 0; // row column
-}
+min-height: 100vh;
+padding: 20px 10px 5px 10px;
+display: grid;
+grid-template-columns: 1fr min-content min-content;
+grid-template-rows: auto 1fr auto auto;
+gap: 10px 0;
 `,
 LogoWrapper = styled.a`
-// layout - position
 grid-column: 1/2;
-grid-row: ${props => props.reduce ? "1/2" : "1/3"};
-align-self: center;
-
+grid-row: 1/2;
 // content-size
 box-sizing: content-box;
-padding: ${props => props.reduce ? "1px 15px 2px 0" : "5px 15px"};
+padding: ${props => props.reduce ? "0 15px 2px 0" : "0 15px"};
 display: flex;
-align-items: center;
+// align-items: center;
 width: 60px;
 img {
 display: inline-block;
@@ -47,8 +29,7 @@ width: ${props => props.reduce ? "40px" : "55px"};
 cursor: pointer;
 
 @media (min-width: 600px) {
-margin-left: 5%;
-padding: 5px 30px;
+padding: 5px 20px;
 width: 80px;
 
 img {
@@ -79,10 +60,9 @@ width: 110px;
 }
 `,
 CartWrapper = styled.a`
-// layout - position
-grid-colmn: 2/3;
-grid-row: ${props => props.reduce ? "1/2" : "2/3"};
-align-self: end;
+grid-column: 2/3;
+grid-row: 1/2;
+// align-self: end;
 position: relative;
 
 margin-left: auto;
@@ -155,71 +135,27 @@ margin-right: 35px;
 
 @media (min-width: 1100px) {
 margin-bottom: 0;
-grid-column: 3/4;
-grid-row: 2/3;
 align-self: center;
 margin-right: 25px;
 }
+
 `,
 ToggleWrapper = styled.a`
-// layout - position
 grid-column: 3/4;
-grid-row: ${props => props.reduce ? "1/2" : "2/3"};
-align-self: end;
-
-
-// content - size
-margin-left: auto;
-box-sizing: content-box;
-padding: ${props => props.reduce ? "10px 10px 10px 15px" : "10px 1px 10px 15px"};
-width: 25px;
-height: 21px;
-border-radius: 5px;
-display: flex;
-flex-flow: column nowrap;
-justify-content: space-between;
-
-span {
-display: inline-block;
-width: 100%;
-height: 3px;
-border-radius: 3px;
-background-color: black;
-}
-
-// actions
-cursor: pointer;
-
-@media (min-width: 600px) {
-width: 40px;
-height: 30px;
-}
-
-@media (min-width: 1100px) {
-display: none;
-}
-`,
-SocialsWrapper = styled.div`
-// layout - position
-display: ${props => props.reduce ? "none" : "flex"};
-grid-column: 2/4;
 grid-row: 1/2;
-align-self: center;
+
+// align-self: end;
+position: relative;
+
 margin-left: auto;
-
-flex-flow: row nowrap;
-a:not(:last-child) {
-margin-right: 10px;
-}
-
-a {
+margin-right: 22px;
 box-sizing: content-box;
-display: inline-block;
+padding: 5px 13px 5px 13px;
+margin-bottom: 3px;
 width: 25px;
 height: 25px;
-margin: 0;
-cursor: pointer;
-}
+border-radius: 5px;
+z-index: 20;
 
 img {
 display: inline-block;
@@ -227,15 +163,27 @@ width: 100%;
 height: 100%;
 }
 
+background-color: white;
+cursor: pointer;
+
 @media (min-width: 600px) {
-a {
-width: 40px;
-height: 40px;
-}
+width: 37px;
+height: 37px;
+margin-right: 35px;
 }
 
 @media (min-width: 1100px) {
-grid-column: 3/5;
+margin-bottom: 0;
 align-self: center;
+margin-right: 25px;
 }
+
+
+
+`,
+SocialsWrapper = styled.div`
+grid-column: 1/4;
+grid-row: 4/5;
+width: 148px;
+margin: auto;
 `;

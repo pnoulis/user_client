@@ -42,6 +42,17 @@ usePassword = (type, style) => {
     password,
   };
 },
+useStyledPassword = type => {
+  const images = ["/eye_close.svg", "/eye_open.svg"];
+  const [reveal, setReveal] = useState(false);
+  if (type !== "password") return [false, null];
+  const password = (
+    <div className="password" onClick={() => setReveal(!reveal)}>
+      <img src={reveal ? images[0] : images[1]} alt="show-hide-icon"/>
+    </div>
+  );
+  return [reveal, password];
+},
 formStyleReducer = (params) => {
   let config = {};
   if ("edit" in params && !params.edit) return config;
@@ -66,5 +77,6 @@ export const FORM_UTILS = {
   isFormReady,
   confirmPassword,
   usePassword,
+  useStyledPassword,
   formStyleReducer,
 };

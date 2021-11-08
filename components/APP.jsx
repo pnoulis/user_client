@@ -4,7 +4,7 @@ import {APP_STORE} from "lib/stores";
 import {backend, time} from "lib/utils";
 import ListFlashMessages from "components/Flash-messages";
 import styled from "styled-components";
-// import Header from "components/Header";
+import Header from "components/Header";
 import Footer from "components/Footer";
 
 const
@@ -22,15 +22,19 @@ min-width: 100%;
 min-height: 100%;
 display: flex;
 position: relative;
+`,
+Dummy = styled.div`
+flex: 1;
+min-height: 80vh;
 `;
 export
 const
 StandardLayout = ({children}) => {
   return (
     <Root>
-      {/* <Header/> */}
+      <Header/>
       <Main id="main-content">
-        {children}
+        {children ? children : (<Dummy/>)}
         <ListFlashMessages container="main-content"/>
       </Main>
       <Footer/>
@@ -63,6 +67,8 @@ export default function App({children}) {
     backend.get({url: "/session"})
       .then(res => res.ok && setTimeout(() => setApp("login", res.payload), 1000))
       .catch(err => console.log(err));
+
+    // setApp("addFlash", {flashId: "FLoginSuccess", timeAlive: null});
   }, []);
 
   // on resize event

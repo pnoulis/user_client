@@ -1,18 +1,14 @@
-import {useState, useEffect} from "react";
-import Link from "next/link";
 import styled from "styled-components";
+import Link from "next/link";
+import {useState} from "react";
+import {APP_STORE} from "lib/stores";
 import {useBackend} from "lib/hooks";
 
-import {APP_STORE} from "lib/stores";
 const { useAppContext } = APP_STORE;
 const
 AccountWrapper = styled.ul`
-grid-column: 4/5;
-grid-row: 2/3;
-align-self: center;
-position: relative;
-list-style-type: none;
-
+grid-column: 1/4;
+grid-row: 3/4;
 `,
 UserAccount = styled.li`
 border: none;
@@ -60,64 +56,48 @@ height: 30px;
 @media (min-width: 1800px) {
 font-size: var(--font-size-2large);
 }
+
 `,
 DropdownWrapper = styled.ul`
-list-style-type: none;
-position: absolute;
-top: 45px;
-left: 50%;
-transform: translate(-50%, 0);
-background-color: var(--color-primary);
-min-width: 100%;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
-padding: 15px 5px 0 10px;
-display: none;
-z-index: 1;
-
-&:hover {
-display: block;
+display: ${props => props.show ? "block" : "none"};
+padding-top: 15px;
+li {
+margin-bottom: 15px;
 }
 `,
 NavLink = styled.a`
-text-transform: lowercase;
-margin-right: 15px;
-display: inline-block;
-cursor: pointer;
-outline: none;
-padding: 10px 20px 10px 20px;
-font-size: var(--font-size-regular);
-font-weight: bold;
-letter-spacing: 1px;
+display: block;
 width: 100%;
-color: var(--color-font);
-margin-bottom: 10px;
+padding: 10px 0 10px 0;
+cursor: pointer;
+background-color: var(--color-primary);
+letter-spacing: 1.5px;
+font-size: var(--font-size-large);
+text-align: center;
+border-radius: 5px;
+color: black;
+
 
 &:hover {
 color: var(--color-font);
 background-color: var(--color-honey);
+border-left-color: white;
 border-radius: 5px;
+font-weight: bold;
 }
 
-&:active {
-color: var(--color-font);
-background-color: var(--color-primary);
-}
 `,
 LoginWrapper = styled.div`
-@media (max-width: 1100px) {
-display: none;
-}
-grid-column: 4/5;
-grid-row: 2/3;
+grid-column: 1/4;
+grid-row: 3/4;
 align-self: center;
 
 display: flex;
 flex-flow: row nowrap;
-justify-content: flex-end;
+justify-content: center;
 
 a:not(:last-child) {
-margin-right: 15px;
+margin-right: 40px;
 }
 
 a {
@@ -154,18 +134,24 @@ a {
 font-size: var(--font-size-2large);
 }
 }
+
 `;
 
-
 export function Account({userNav}) {
-  const [mobileTouched, setMobileTouched] = useState(false);
+  const [touched, setTouched] = useState(false);
+
+  function handleTouch(e) {
+    e.preventDefault();
+    setTouched(!touched);
+  }
+
   return (
     <AccountWrapper>
-      <UserAccount onTouchStart={() => setMobileTouched(!mobileTouched)}>
+      <UserAccount onClick={handleTouch}>
         <span>user</span>
         <img src="/user_success.png" alt="user-icon"/>
-        <Dropdown show={mobileTouched} navs={userNav}/>
       </UserAccount>
+      <Dropdown show={touched} navs={userNav}/>
     </AccountWrapper>
   );
 }
@@ -198,7 +184,7 @@ function Dropdown({show, navs}) {
           <NavLink>account</NavLink>
         </Link>
       </li>
-      <li onClick={logout}>
+      <li onClick={() => setApp("logout")}>
         <NavLink>logout</NavLink>
       </li>
     </DropdownWrapper>
