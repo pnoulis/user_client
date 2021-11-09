@@ -3,7 +3,6 @@
 
 export default function CHECKOUT_DELIVERY_PAGE() {
   return (
-    // <ToggleableForm/>
-    // <Delivery/>
+    <p>checkout delivery page</p>
   );
 }
